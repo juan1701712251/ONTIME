@@ -60,6 +60,7 @@ namespace SCAPE.API
 
             //Dependencias
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployee_WorkPlaceRepository, Employee_WorkPlaceRepository>();
             services.AddTransient<IEmployeeService, EmployeeService>();
 
 

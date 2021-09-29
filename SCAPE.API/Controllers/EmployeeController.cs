@@ -6,6 +6,7 @@ using SCAPE.Application.DTOs;
 using SCAPE.Application.Interfaces;
 using SCAPE.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SCAPE.API.Controllers
@@ -98,6 +99,27 @@ namespace SCAPE.API.Controllers
 
             return Ok(employeeDTO);
         }
+        // <summary>
+        /// Get All Employees With Image By WorkPlace
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize(Roles = "Admin,Employeer")]
+        [Route("GetEmployeesByWorkPlace/{workplaceId}")]
+        public async Task<IActionResult> getEmployeesWithImage(int workplaceId)
+        {
+            List<EmployeeWorkPlace> employees = null;
+            try
+            {
+                employees = await _employeeService.getEmployeesWithImageByWorkplace(workplaceId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            List<EmployeeWorkPlaceDTO> employeesDTO = _mapper.Map<List<EmployeeWorkPlaceDTO>>(employees);
 
+            return Ok(employeesDTO);
+        }
     }
 }

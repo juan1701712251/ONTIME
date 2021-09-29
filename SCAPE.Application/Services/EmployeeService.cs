@@ -4,6 +4,7 @@ using SCAPE.Domain.Entities;
 using SCAPE.Domain.Exceptions;
 using SCAPE.Domain.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -14,11 +15,13 @@ namespace SCAPE.Application.Services
 
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IFaceRecognition _faceRecognition;
+        private readonly IEmployee_WorkPlaceRepository _employee_WorkPlaceRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository, IFaceRecognition faceRecognition)
+        public EmployeeService(IEmployeeRepository employeeRepository, IFaceRecognition faceRecognition,IEmployee_WorkPlaceRepository employee_WorkPlaceRepository)
         {
             _employeeRepository = employeeRepository;
             _faceRecognition = faceRecognition;
+            _employee_WorkPlaceRepository = employee_WorkPlaceRepository; 
         }
         /// <summary>
         /// This method contain bussiness logic 
@@ -193,6 +196,24 @@ namespace SCAPE.Application.Services
         public async Task<Employee> findEmployee(string documentId)
         {
             return await _employeeRepository.findEmployee(documentId);
+        }
+
+        /// <summary>
+        /// Get All Employees 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Employee>> getEmployees()
+        {
+            return await _employeeRepository.getEmployees();
+        }
+
+        /// <summary>
+        /// Get All Employees With Image By WorkPlace ID
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<EmployeeWorkPlace>> getEmployeesWithImageByWorkplace(int workPlaceId)
+        {
+            return await _employee_WorkPlaceRepository.getEmployeesWithImageByWorkPlace(workPlaceId);
         }
     }
 }

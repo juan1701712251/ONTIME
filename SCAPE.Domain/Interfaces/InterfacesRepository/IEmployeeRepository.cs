@@ -15,5 +15,6 @@ namespace SCAPE.Domain.Interfaces
         Task<Employee> findEmployee(string documentId);
 
         Task<Employee> findEmployeeByPersistedFaceId(string persistedFaceId);
+        Task<List<Employee>> getEmployees();
     }
 }
