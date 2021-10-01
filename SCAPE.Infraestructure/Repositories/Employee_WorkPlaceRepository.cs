@@ -28,6 +28,7 @@ namespace SCAPE.Infraestructure.Repositories
             return await _context.EmployeeWorkPlace.Where(e => e.IdWorkPlace == workPlaceId)
                                                     .Select(e => new EmployeeWorkPlace
                                                     {
+                                                        IdEmployee = e.IdEmployee,
                                                         IdWorkPlace = e.IdWorkPlace,
                                                         StartJobDate = e.StartJobDate,
                                                         EndJobDate = e.EndJobDate,

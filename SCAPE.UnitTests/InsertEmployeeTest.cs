@@ -35,7 +35,7 @@ namespace SCAPE.UnitTests
             mock_Repository.Setup(m => m.findEmployee(It.IsAny<string>())).Returns(
                 async (string document) => employees.FirstOrDefault(o => o.DocumentId == document)
             );
-            employeeService = new EmployeeService(mock_Repository.Object, null);
+            employeeService = new EmployeeService(mock_Repository.Object, null,null);
         }
 
         [Fact]

@@ -359,6 +359,10 @@
               "target": "Package",
               "version": "[3.13.2, )"
             },
+            "Xunit.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.6.0, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[1.2.0, )"
