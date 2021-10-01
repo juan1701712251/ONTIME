@@ -195,7 +195,8 @@ namespace SCAPE.Application.Services
         /// <returns>Employee associate to this documentId</returns>
         public async Task<Employee> findEmployee(string documentId)
         {
-            return await _employeeRepository.findEmployee(documentId);
+            Employee employee = await _employeeRepository.findEmployee(documentId);
+            return employee ?? throw new EmployeeException("Employee doesnt exist with that document");
         }
 
         /// <summary>

@@ -439,3 +439,10 @@ C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\obj\Debug\netcoreapp3.1\SCAPE.API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\SCAPE.API.xml
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\obj\Debug\netcoreapp3.1\SCAPE.API.xml

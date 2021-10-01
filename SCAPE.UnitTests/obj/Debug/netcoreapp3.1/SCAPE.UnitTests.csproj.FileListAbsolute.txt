@@ -774,3 +774,9 @@ C:\Users\GOMEZ\Desktop\Semestre_8\Ingeniería de Software 3\SCAPE\SCAPE\SCAPE.Un
 C:\Users\GOMEZ\Desktop\Semestre_8\Ingeniería de Software 3\SCAPE\SCAPE\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.dll
 C:\Users\GOMEZ\Desktop\Semestre_8\Ingeniería de Software 3\SCAPE\SCAPE\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.pdb
 C:\Users\GOMEZ\Desktop\Semestre_8\Ingeniería de Software 3\SCAPE\SCAPE\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.genruntimeconfig.cache
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.csprojAssemblyReference.cache
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.AssemblyInfoInputs.cache
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.AssemblyInfo.cs
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.csproj.CoreCompileInputs.cache
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.pdb

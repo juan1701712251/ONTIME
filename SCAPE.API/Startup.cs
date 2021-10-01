@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -15,6 +17,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using SCAPE.Application.Interfaces;
 using SCAPE.Application.Services;
 using SCAPE.Domain.Interfaces;
@@ -26,6 +29,7 @@ namespace SCAPE.API
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,6 +40,21 @@ namespace SCAPE.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                                  builder =>
+                                  {
+                                      builder
+                                        .WithOrigins("http://localhost:19006")
+                                        .WithMethods("GET","PUT","POST","DELETE")
+                                        .WithHeaders("Authorization")
+                                        .AllowCredentials();
+                                      
+                                  });
+            });
+
             var keyJWT = Encoding.ASCII.GetBytes(Configuration.GetValue<string>("SecretKey"));
 
             services.AddAuthentication(x => {
@@ -52,6 +71,7 @@ namespace SCAPE.API
                     ValidateAudience = false
                 };
             });
+
             services.AddControllers();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -74,6 +94,15 @@ namespace SCAPE.API
 
             services.AddTransient<ITokenService, TokenService>();
 
+            services.AddSwaggerGen(doc =>
+            {
+                doc.SwaggerDoc("v1", new OpenApiInfo { Title = "OnTime API", Version = "v1" });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                doc.IncludeXmlComments(xmlPath);
+            });
 
         }
 
@@ -87,7 +116,16 @@ namespace SCAPE.API
 
             app.UseHttpsRedirection();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(option =>
+            {
+                option.SwaggerEndpoint("/swagger/v1/swagger.json","OnTime API");
+                
+            });
+
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthentication();
 

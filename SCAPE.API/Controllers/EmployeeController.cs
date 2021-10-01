@@ -99,10 +99,36 @@ namespace SCAPE.API.Controllers
 
             return Ok(employeeDTO);
         }
-        // <summary>
+        /// <summary>
+        /// Get Employee By Document ID
+        /// </summary>
+        /// <param name="documentId">Document Id</param>
+        /// <returns>If get is succesfull, return a Employee and "Code status 200"</returns>
+        [HttpGet]
+        [Authorize]
+        [Route("{documentId}")]
+        public async Task<IActionResult> getEmployeeByDocument(string documentId)
+        {
+            EmployeeDTO employeeDTO = new EmployeeDTO();
+
+            try
+            {
+                Employee employee = await _employeeService.findEmployee(documentId);
+                employeeDTO = _mapper.Map<EmployeeDTO>(employee);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(employeeDTO);
+        }
+
+        /// <summary>
         /// Get All Employees With Image By WorkPlace
         /// </summary>
-        /// <returns></returns>
+        /// <param name="workplaceId">WorkPlace Id</param>
+        /// <returns>List Employees with data of WorkPlace</returns>
         [HttpGet]
         [Authorize(Roles = "Admin,Employeer")]
         [Route("GetEmployeesByWorkPlace/{workplaceId}")]

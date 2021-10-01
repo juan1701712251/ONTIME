@@ -86,7 +86,6 @@ namespace SCAPE.Infraestructure.Repositories
         /// <returns>>A successful call returns a Employee's List</returns>
         public async Task<List<Employee>> getEmployees()
         {
-            //return await _context.Employee.Include("Image").ToListAsync();
             return await _context.Employee.ToListAsync();
         }
     }
