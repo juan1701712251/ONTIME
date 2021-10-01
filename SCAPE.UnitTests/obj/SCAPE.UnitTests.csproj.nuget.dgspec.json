@@ -63,6 +63,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.2, )"
             }
           },
           "imports": [
@@ -354,6 +358,10 @@
             "NUnit": {
               "target": "Package",
               "version": "[3.13.2, )"
+            },
+            "Xunit.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.6.0, )"
             },
             "coverlet.collector": {
               "target": "Package",

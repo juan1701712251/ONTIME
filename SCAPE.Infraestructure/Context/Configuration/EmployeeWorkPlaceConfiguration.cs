@@ -31,7 +31,7 @@ namespace SCAPE.Infraestructure.Context.Configuration
                 .HasColumnName("startJobDate")
                 .HasColumnType("datetime");
 
-            entity.HasOne(d => d.IdEmployeeNavigation)
+            entity.HasOne(d => d.Employee)
                 .WithMany(p => p.EmployeeWorkPlace)
                 .HasForeignKey(d => d.IdEmployee)
                 .OnDelete(DeleteBehavior.ClientSetNull)

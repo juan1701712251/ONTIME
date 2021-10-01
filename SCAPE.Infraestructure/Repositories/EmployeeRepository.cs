@@ -4,6 +4,7 @@ using SCAPE.Domain.Entities;
 using SCAPE.Domain.Interfaces;
 using SCAPE.Infraestructure.Context;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SCAPE.Infraestructure.Repositories
@@ -77,6 +78,15 @@ namespace SCAPE.Infraestructure.Repositories
             }
             
             return await _context.Employee.FirstOrDefaultAsync(e => e.Id == image.IdEmployee);
+        }
+
+        /// <summary>
+        /// Get employees  (SCAPEDB in this case)
+        /// </summary>
+        /// <returns>>A successful call returns a Employee's List</returns>
+        public async Task<List<Employee>> getEmployees()
+        {
+            return await _context.Employee.ToListAsync();
         }
     }
 }

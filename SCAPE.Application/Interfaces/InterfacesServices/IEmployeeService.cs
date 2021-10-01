@@ -1,5 +1,6 @@
 ﻿using SCAPE.Application.DTOs;
 using SCAPE.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SCAPE.Application.Interfaces
@@ -13,5 +14,9 @@ namespace SCAPE.Application.Interfaces
         Task<Employee> getEmployeeByFace(string encodeImage,string faceListId);
 
         Task<Employee> findEmployee(string documentId);
+
+        Task<List<Employee>> getEmployees();
+
+        Task<List<EmployeeWorkPlace>> getEmployeesWithImageByWorkplace(int workPlaceId);
     }
 }

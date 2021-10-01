@@ -35,7 +35,7 @@ namespace SCAPE.UnitTests
             mock_Repository.Setup(m => m.findEmployee(It.IsAny<string>())).Returns(async () => employee);
 
             // Tests
-            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration));
+            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration),null);
             string documentId = "12345";
             string faceListId = "prueba";
             //Image with face
@@ -54,7 +54,7 @@ namespace SCAPE.UnitTests
             mock_Repository.Setup(m => m.findEmployee(It.IsAny<string>())).Returns(async () => null);
 
             // Tests
-            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration));
+            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration), null);
             string documentId = "KMDL123";
             string faceListId = "prueba";
             //Image with face
@@ -83,7 +83,7 @@ namespace SCAPE.UnitTests
             mock_Repository.Setup(m => m.findEmployee(It.IsAny<string>())).Returns(async () => employee);
 
             // Tests
-            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration));
+            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration), null);
             string documentId = "12345";
             string faceListId = "prueba";
             //Image without faces
@@ -111,7 +111,7 @@ namespace SCAPE.UnitTests
             mock_Repository.Setup(m => m.findEmployee(It.IsAny<string>())).Returns(async () => employee);
 
             // Tests
-            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration));
+            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration), null);
             string documentId = "1234567";
             string faceListId = "prueba";
             //Image with 2 faces
@@ -139,7 +139,7 @@ namespace SCAPE.UnitTests
             mock_Repository.Setup(m => m.findEmployee(It.IsAny<string>())).Returns(async () => employee);
 
             // Tests
-            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration));
+            EmployeeService employeeService = new EmployeeService(mock_Repository.Object, new FaceRecognition(_configuration), null);
 
             //Employee without associating image
             string documentId = "1234";
