@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SCAPE.Domain.Entities
+namespace SCAPE.Application.DTOs
 {
-    public  class EmployeeWorkPlace
+    public  class EmployeeWorkPlaceDTO
     {
-        public int IdEmployee { get; set; }
         public int IdWorkPlace { get; set; }
         public DateTime StartJobDate { get; set; }
         public DateTime EndJobDate { get; set; }
         public string Schedule { get; set; }
 
-        public virtual Employee Employee { get; set; }
-        public virtual WorkPlace IdWorkPlaceNavigation { get; set; }
+        public EmployeeWithImageDTO Employee { get; set; }
     }
 }

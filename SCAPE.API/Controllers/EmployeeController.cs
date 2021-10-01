@@ -6,6 +6,7 @@ using SCAPE.Application.DTOs;
 using SCAPE.Application.Interfaces;
 using SCAPE.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SCAPE.API.Controllers
@@ -98,6 +99,53 @@ namespace SCAPE.API.Controllers
 
             return Ok(employeeDTO);
         }
+        /// <summary>
+        /// Get Employee By Document ID
+        /// </summary>
+        /// <param name="documentId">Document Id</param>
+        /// <returns>If get is succesfull, return a Employee and "Code status 200"</returns>
+        [HttpGet]
+        [Authorize]
+        [Route("{documentId}")]
+        public async Task<IActionResult> getEmployeeByDocument(string documentId)
+        {
+            EmployeeDTO employeeDTO = new EmployeeDTO();
 
+            try
+            {
+                Employee employee = await _employeeService.findEmployee(documentId);
+                employeeDTO = _mapper.Map<EmployeeDTO>(employee);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(employeeDTO);
+        }
+
+        /// <summary>
+        /// Get All Employees With Image By WorkPlace
+        /// </summary>
+        /// <param name="workplaceId">WorkPlace Id</param>
+        /// <returns>List Employees with data of WorkPlace</returns>
+        [HttpGet]
+        [Authorize(Roles = "Admin,Employeer")]
+        [Route("GetEmployeesByWorkPlace/{workplaceId}")]
+        public async Task<IActionResult> getEmployeesWithImage(int workplaceId)
+        {
+            List<EmployeeWorkPlace> employees = null;
+            try
+            {
+                employees = await _employeeService.getEmployeesWithImageByWorkplace(workplaceId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            List<EmployeeWorkPlaceDTO> employeesDTO = _mapper.Map<List<EmployeeWorkPlaceDTO>>(employees);
+
+            return Ok(employeesDTO);
+        }
     }
 }
