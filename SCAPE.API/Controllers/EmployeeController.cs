@@ -5,6 +5,7 @@ using SCAPE.API.ActionsModels;
 using SCAPE.Application.DTOs;
 using SCAPE.Application.Interfaces;
 using SCAPE.Domain.Entities;
+using SCAPE.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -114,6 +115,10 @@ namespace SCAPE.API.Controllers
             try
             {
                 Employee employee = await _employeeService.findEmployee(documentId);
+                if (employee == null)
+                {
+                    throw new EmployeeException("Employee doesnt exist with that document");
+                }
                 employeeDTO = _mapper.Map<EmployeeDTO>(employee);
             }
             catch (Exception ex)

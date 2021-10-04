@@ -96,3 +96,17 @@ C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.Infraestructu
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csproj.CopyComplete
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.dll
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.pdb
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Infraestructure.deps.json
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Infraestructure.dll
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Infraestructure.pdb
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Application.dll
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Domain.dll
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Application.pdb
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Domain.pdb
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csprojAssemblyReference.cache
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.AssemblyInfoInputs.cache
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.AssemblyInfo.cs
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csproj.CoreCompileInputs.cache
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csproj.CopyComplete
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.dll
+E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.pdb
