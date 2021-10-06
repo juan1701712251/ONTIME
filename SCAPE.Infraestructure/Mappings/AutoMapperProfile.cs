@@ -10,6 +10,8 @@ namespace SCAPE.Infraestructure.Mappings
         {
             CreateMap<Employee, EmployeeDTO>();
             CreateMap<EmployeeDTO, Employee>();
+            CreateMap<Employee, EmployeeEditDTO>();
+            CreateMap<EmployeeEditDTO, Employee>();
             CreateMap<Employee, EmployeeCreateDTO>();
             CreateMap<EmployeeCreateDTO, Employee>();
             CreateMap<EmployeeWorkPlaceDTO, EmployeeWorkPlace>();

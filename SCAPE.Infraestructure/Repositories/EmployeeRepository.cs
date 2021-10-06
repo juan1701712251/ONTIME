@@ -53,6 +53,19 @@ namespace SCAPE.Infraestructure.Repositories
             return await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentId);
             
         }
+
+        /// <summary>
+        /// Find employee at the context (SCAPEDB in this case)
+        /// </summary>
+        /// <param name="email">employee's email to find</param>
+        /// <returns>>A successful call returns true</returns>
+        public async Task<bool> existEmployeeByEmail(string email)
+        {
+            Employee emp = await _context.Employee.FirstOrDefaultAsync(e => e.Email == email);
+            return emp != null;
+        }
+
+
         /// <summary>
         /// Saves the employee's image into the context (SCAPEDB in this case)
         /// </summary>
@@ -87,6 +100,38 @@ namespace SCAPE.Infraestructure.Repositories
         public async Task<List<Employee>> getEmployees()
         {
             return await _context.Employee.ToListAsync();
+        }
+
+        public async Task<bool> editEmployee(string documentIdOLD, Employee employee)
+        {
+            Employee employeeEdit = await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentIdOLD);
+
+            if (employeeEdit != null)
+            {
+                employeeEdit.DocumentId = employee.DocumentId;
+                employeeEdit.FirstName = employee.FirstName;
+                employeeEdit.LastName = employee.LastName;
+                employeeEdit.Sex = employee.Sex;
+                employeeEdit.DateBirth = employee.DateBirth;
+                employeeEdit.Email = employee.Email;
+
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<string> deleteEmployee(string documentId)
+        {
+            Employee employeeDelete = await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentId);
+            string emailDelete = employeeDelete.Email;
+            _context.Employee.Remove(employeeDelete);
+            await _context.SaveChangesAsync();
+
+            return emailDelete;
+
         }
     }
 }

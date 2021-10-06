@@ -62,6 +62,50 @@ namespace SCAPE.Application.Services
             return true;
         }
 
+        public async Task<bool> deleteUser(string email)
+        {
+            bool result = await _userRepository.deleteuser(email);
+            if(!result)
+                throw new UserException("There was an error deleting the user.");
+            return result;
+        }
+
+        public async Task<bool> editUser(string email, string password, string role)
+        {
+            User user = null;
+            /*
+             * Validar si existe un usuario con ese correo
+             */
+            user = await _userRepository.findUserByEmail(email);
+
+            if (user == null)
+            {
+                User newUser = new User();
+                newUser.Id = 0;
+                newUser.Email = email;
+                newUser.Password = Encrypt.GetSHA256(password); //Encriptar contraseña
+                newUser.Role = role;
+
+                bool isEdit = await _userRepository.insertUser(newUser);
+
+                if (!isEdit)
+                {
+                    throw new UserException("There was an error entering user.");
+                }
+            }
+            else
+            {
+                bool isEdit = await _userRepository.editUser(email, Encrypt.GetSHA256(password), role);
+
+                if (!isEdit)
+                {
+                    throw new UserException("There was an error editing user.");
+                }
+            }
+
+            return true;
+        }
+
         /// <summary>
         /// Method that logs user
         /// </summary>
@@ -75,13 +119,17 @@ namespace SCAPE.Application.Services
             user.Password = Encrypt.GetSHA256(password);
             
             User oUser = await _userRepository.getUser(user);
-
             if (oUser == null)
             {
                 throw new UserException("There was an error with credentials");
             }
             oUser.Password = "";
             return oUser;
+        }
+
+        private async Task<bool> isEmailValidForLogin(string email)
+        {
+            return await _employeeRepository.existEmployeeByEmail(email);
         }
     }
 }
