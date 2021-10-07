@@ -216,5 +216,37 @@ namespace SCAPE.Application.Services
         {
             return await _employee_WorkPlaceRepository.getEmployeesWithImageByWorkPlace(workPlaceId);
         }
+
+        /// <summary>
+        /// Edit Employee
+        /// </summary>
+        /// <param name="documentIdOLD">Employee´s document Id OLD </param>
+        /// <param name="employeeEdit">New data of employee</param>
+        /// <returns>If edit is correct returns True</returns>
+        public async Task<bool> editEmployee(string documentIdOLD, Employee employeeEdit)
+        {
+            bool result = await _employeeRepository.editEmployee(documentIdOLD, employeeEdit);
+            if (!result)
+            {
+                throw new EmployeeException("There was an error editing the employee ");
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Delete employee
+        /// </summary>
+        /// <param name="documentId">Employee´s document Id</param>
+        /// <returns>If delete is correct returns Employee´s Email to delete</returns>
+
+        public async Task<string> deleteEmployee(string documentId)
+        {
+            string emailDelete = await _employeeRepository.deleteEmployee(documentId);
+            if (emailDelete == null)
+            {
+                throw new EmployeeException("There was an error deleting the employee ");
+            }
+            return emailDelete;
+        }
     }
 }

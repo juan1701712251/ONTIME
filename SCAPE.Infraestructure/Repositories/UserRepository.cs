@@ -16,6 +16,35 @@ namespace SCAPE.Infraestructure.Repositories
             _context = context;
         }
 
+        public async Task<bool> deleteuser(string email)
+        {
+            User deleteUser = await _context.User.FirstOrDefaultAsync(e => e.Email == email);
+            if (deleteUser != null)
+            {
+                _context.User.Remove(deleteUser);
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> editUser(string email, string password, string role)
+        {
+            User editUser  = await _context.User.FirstOrDefaultAsync(e => e.Email == email);
+
+            if(editUser != null)
+            {
+                editUser.Password = password;
+                editUser.Role = role;
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+
+            return false;
+        }
+
         /// <summary>
         /// Find user by email
         /// </summary>

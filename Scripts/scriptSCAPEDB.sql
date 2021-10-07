@@ -114,7 +114,7 @@ INSERT [dbo].[Employee] ([id], [documentId], [firstName], [lastName], [email],[s
 SET IDENTITY_INSERT [dbo].[Employee] OFF
 
 ALTER TABLE [dbo].[Employee_WorkPlace]  WITH NOCHECK ADD  CONSTRAINT [FK_EmployeeWorkPlace] FOREIGN KEY([idEmployee])
-REFERENCES [dbo].[Employee] ([id])
+REFERENCES [dbo].[Employee] ([id]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Employee_WorkPlace] CHECK CONSTRAINT [FK_EmployeeWorkPlace]
 GO
@@ -124,11 +124,11 @@ GO
 ALTER TABLE [dbo].[Employee_WorkPlace] CHECK CONSTRAINT [FK_WorkPlace]
 GO
 ALTER TABLE [dbo].[Attendance]  WITH NOCHECK ADD  CONSTRAINT [FK_Employee] FOREIGN KEY([idEmployee])
-REFERENCES [dbo].[Employee] ([id])
+REFERENCES [dbo].[Employee] ([id]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Attendance] CHECK CONSTRAINT [FK_Employee]
 
 ALTER TABLE [dbo].[Image]  WITH NOCHECK ADD  CONSTRAINT [FK_EmployeeImage] FOREIGN KEY([idEmployee])
-REFERENCES [dbo].[Employee] ([id])
+REFERENCES [dbo].[Employee] ([id]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Image] CHECK CONSTRAINT [FK_EmployeeImage]

@@ -9,5 +9,7 @@ namespace SCAPE.Application.Interfaces
     {
         Task<bool> addUser(string email, string password, string role);
         Task<User> login(string email, string password);
+        Task<bool> editUser(string email, string password, string role);
+        Task<bool> deleteUser(string email);
     }
 }

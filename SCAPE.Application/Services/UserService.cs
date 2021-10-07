@@ -63,6 +63,63 @@ namespace SCAPE.Application.Services
         }
 
         /// <summary>
+        /// Delete User
+        /// </summary>
+        /// <param name="email">User´s Email to Delete</param>
+        /// <returns>If call´s succesfully return true</returns>
+        public async Task<bool> deleteUser(string email)
+        {
+            bool result = await _userRepository.deleteuser(email);
+            if(!result)
+                throw new UserException("There was an error deleting the user or had no User.");
+            return result;
+        }
+
+
+        /// <summary>
+        /// Edit User
+        /// </summary>
+        /// <param name="email">New Email</param>
+        /// <param name="password">New password</param>
+        /// <param name="role">New Role</param>
+        /// <returns>If call´s succesfully return true</returns>
+        public async Task<bool> editUser(string email, string password, string role)
+        {
+            User user = null;
+            /*
+             * Validar si existe un usuario con ese correo
+             */
+            user = await _userRepository.findUserByEmail(email);
+
+            if (user == null)
+            {
+                User newUser = new User();
+                newUser.Id = 0;
+                newUser.Email = email;
+                newUser.Password = Encrypt.GetSHA256(password); //Encriptar contraseña
+                newUser.Role = role;
+
+                bool isEdit = await _userRepository.insertUser(newUser);
+
+                if (!isEdit)
+                {
+                    throw new UserException("There was an error entering user.");
+                }
+            }
+            else
+            {
+                bool isEdit = await _userRepository.editUser(email, Encrypt.GetSHA256(password), role);
+
+                if (!isEdit)
+                {
+                    throw new UserException("There was an error editing user.");
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Method that logs user
         /// </summary>
         /// <param name="email">Email from User to login</param>
@@ -75,13 +132,23 @@ namespace SCAPE.Application.Services
             user.Password = Encrypt.GetSHA256(password);
             
             User oUser = await _userRepository.getUser(user);
-
-            if (oUser == null)
+            if (oUser == null || !(await isEmailValidForLogin(email)))
             {
                 throw new UserException("There was an error with credentials");
             }
             oUser.Password = "";
             return oUser;
+        }
+        /// <summary>
+        /// Verify if email is valid
+        /// </summary>
+        /// <param name="email">Email to Verify</param>
+        /// <returns>If email is valid returns True</returns>
+        private async Task<bool> isEmailValidForLogin(string email)
+        {
+            //TODO: Also verify Employeers email and Admin emails
+            bool isActiveEmployee = await _employeeRepository.existEmployeeByEmail(email);
+            return true;
         }
     }
 }

@@ -18,5 +18,7 @@ namespace SCAPE.Application.Interfaces
         Task<List<Employee>> getEmployees();
 
         Task<List<EmployeeWorkPlace>> getEmployeesWithImageByWorkplace(int workPlaceId);
+        Task<bool> editEmployee(string documentIdOLD, Employee employeeEdit);
+        Task<string> deleteEmployee(string documentId);
     }
 }

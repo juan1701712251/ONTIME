@@ -50,6 +50,61 @@ namespace SCAPE.API.Controllers
             
             return Ok("Employee has been created");
         }
+
+        /// <summary>
+        /// Delete a employee from web service
+        /// </summary>
+        /// <param name="documentId">Document´s Employee</param>
+        /// <returns>If delete is succesful, return a "Code status 200"</returns>
+        [HttpDelete]
+        [Authorize(Roles = "Admin, Employeer")]
+        [Route("{documentId}")]
+        public async Task<IActionResult> deleteEmployee(string documentId)
+        {
+            try
+            {
+                string email = await _employeeService.deleteEmployee(documentId);
+                if(email != null)
+                    await _userService.deleteUser(email);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok("Employee has been deleted");
+        }
+
+        /// <summary>
+        /// Edit a Employee
+        /// If password equal "" or null, the old password will be left
+        /// </summary>
+        /// <param name="documentIdOLD">Documento antiguo del Empleado</param>
+        /// <param name="employeeDTO">Object in DTO (Data Transfer Object) Format</param>
+        /// <returns>If edit is succesful, return a "Code status 200"</returns>
+
+        [HttpPut]
+        [Authorize(Roles = "Admin,Employeer")]
+        [Route("{documentIdOLD}")]
+        public async Task<IActionResult> editEmployee(string documentIdOLD,EmployeeEditDTO employeeDTO)
+        {
+            Employee employeeEdit = _mapper.Map<Employee>(employeeDTO);
+            bool resultAssociate = false;
+            try
+            {
+                resultAssociate = await _employeeService.editEmployee(documentIdOLD,employeeEdit);
+
+                if(employeeDTO.Email != null && employeeDTO.Password != null && employeeDTO.Password != "" && resultAssociate)
+                    await _userService.editUser(employeeDTO.Email,employeeDTO.Password,"Employee");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(resultAssociate);
+        }
+
         /// <summary>
         /// Associate a face to an Employee
         /// </summary>
