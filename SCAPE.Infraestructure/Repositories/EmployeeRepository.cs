@@ -102,6 +102,12 @@ namespace SCAPE.Infraestructure.Repositories
             return await _context.Employee.ToListAsync();
         }
 
+        /// <summary>
+        /// Edit Employee
+        /// </summary>
+        /// <param name="documentIdOLD">Employee´s document Id OLD </param>
+        /// <param name="employee">New data of employee</param>
+        /// <returns>If edit is correct returns True</returns>
         public async Task<bool> editEmployee(string documentIdOLD, Employee employee)
         {
             Employee employeeEdit = await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentIdOLD);
@@ -123,6 +129,12 @@ namespace SCAPE.Infraestructure.Repositories
             return false;
         }
 
+        /// <summary>
+        /// Delete employee
+        /// </summary>
+        /// <param name="documentId">Employee´s document Id</param>
+        /// <returns>If delete is correct returns Employee´s Email to delete</returns>
+        
         public async Task<string> deleteEmployee(string documentId)
         {
             Employee employeeDelete = await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentId);

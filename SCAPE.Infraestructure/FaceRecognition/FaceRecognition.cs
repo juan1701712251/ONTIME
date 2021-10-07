@@ -42,6 +42,15 @@ namespace SCAPE.Infraestructure.FaceRecognition
             return persistedFace.PersistedFaceId.ToString();
 
         }
+
+
+        public async Task<bool> deleteFaceAsync(Guid persistenceFaceID, string faceListId)
+        {
+            await client.FaceList.DeleteFaceAsync(faceListId, persistenceFaceID);
+            return true;
+
+        }
+
         /// <summary>
         /// Call the Azure SDK  to make request in Cognitive Services and detect human faces in an image
         /// </summary>

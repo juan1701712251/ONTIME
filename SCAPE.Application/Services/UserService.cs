@@ -62,14 +62,27 @@ namespace SCAPE.Application.Services
             return true;
         }
 
+        /// <summary>
+        /// Delete User
+        /// </summary>
+        /// <param name="email">User´s Email to Delete</param>
+        /// <returns>If call´s succesfully return true</returns>
         public async Task<bool> deleteUser(string email)
         {
             bool result = await _userRepository.deleteuser(email);
             if(!result)
-                throw new UserException("There was an error deleting the user.");
+                throw new UserException("There was an error deleting the user or had no User.");
             return result;
         }
 
+
+        /// <summary>
+        /// Edit User
+        /// </summary>
+        /// <param name="email">New Email</param>
+        /// <param name="password">New password</param>
+        /// <param name="role">New Role</param>
+        /// <returns>If call´s succesfully return true</returns>
         public async Task<bool> editUser(string email, string password, string role)
         {
             User user = null;
@@ -119,17 +132,23 @@ namespace SCAPE.Application.Services
             user.Password = Encrypt.GetSHA256(password);
             
             User oUser = await _userRepository.getUser(user);
-            if (oUser == null)
+            if (oUser == null || !(await isEmailValidForLogin(email)))
             {
                 throw new UserException("There was an error with credentials");
             }
             oUser.Password = "";
             return oUser;
         }
-
+        /// <summary>
+        /// Verify if email is valid
+        /// </summary>
+        /// <param name="email">Email to Verify</param>
+        /// <returns>If email is valid returns True</returns>
         private async Task<bool> isEmailValidForLogin(string email)
         {
-            return await _employeeRepository.existEmployeeByEmail(email);
+            //TODO: Also verify Employeers email and Admin emails
+            bool isActiveEmployee = await _employeeRepository.existEmployeeByEmail(email);
+            return true;
         }
     }
 }

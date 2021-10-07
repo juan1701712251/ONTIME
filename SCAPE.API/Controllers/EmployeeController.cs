@@ -51,6 +51,11 @@ namespace SCAPE.API.Controllers
             return Ok("Employee has been created");
         }
 
+        /// <summary>
+        /// Delete a employee from web service
+        /// </summary>
+        /// <param name="documentId">Document´s Employee</param>
+        /// <returns>If delete is succesful, return a "Code status 200"</returns>
         [HttpDelete]
         [Authorize(Roles = "Admin, Employeer")]
         [Route("{documentId}")]
@@ -61,15 +66,13 @@ namespace SCAPE.API.Controllers
                 string email = await _employeeService.deleteEmployee(documentId);
                 if(email != null)
                     await _userService.deleteUser(email);
-                    //TODO: Delete Face from Azure
-
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
 
-            return Ok("Employee has been created");
+            return Ok("Employee has been deleted");
         }
 
         /// <summary>
