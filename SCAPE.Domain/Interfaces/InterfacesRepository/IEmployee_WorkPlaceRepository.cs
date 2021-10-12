@@ -9,5 +9,6 @@ namespace SCAPE.Domain.Interfaces
     public interface IEmployee_WorkPlaceRepository
     {
         Task<List<EmployeeWorkPlace>> getEmployeesWithImageByWorkPlace(int workPlaceId);
+        Task<bool> addWorkPlaceByEmployee(EmployeeWorkPlace newEmployeeWorkPlace);
     }
 }

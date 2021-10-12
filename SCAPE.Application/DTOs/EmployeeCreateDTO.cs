@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace SCAPE.Application.DTOs
@@ -14,5 +15,6 @@ namespace SCAPE.Application.DTOs
         public string Sex { get; set; }
         public string Password { get; set; }
         public DateTime? DateBirth { get; set; }
+        public int WorkPlaceId { get; set; }
     }
 }

@@ -248,5 +248,40 @@ namespace SCAPE.Application.Services
             }
             return emailDelete;
         }
+
+        /// <summary>
+        /// Add Workplace to Employee
+        /// </summary>
+        /// <param name="documentId">Employee's Document Id</param>
+        /// <param name="workPlaceId">Employee's WorkPlace Id</param>
+        /// <param name="StartJobDate">Employee's Start Job Date</param>
+        /// <param name="EndJobDate">Employee's End Job Date</param>
+        /// <param name="Schedule">Employee's Schedule</param>
+        /// <returns>If add is correct returns true</returns>
+        public async Task<bool> addWorkPlaceByEmployee(string documentId, int workPlaceId, DateTime StartJobDate, DateTime EndJobDate, string Schedule)
+        {
+            Employee employee = await findEmployee(documentId);
+
+            if (employee == null)
+            {
+                throw new EmployeeException("Doesnt exit employee with that doument");
+            }
+
+            EmployeeWorkPlace newEmployeeWorkPlace = new EmployeeWorkPlace();
+            newEmployeeWorkPlace.IdEmployee = employee.Id;
+            newEmployeeWorkPlace.IdWorkPlace = workPlaceId;
+            newEmployeeWorkPlace.StartJobDate = StartJobDate;
+            newEmployeeWorkPlace.EndJobDate = EndJobDate;
+            newEmployeeWorkPlace.Schedule = Schedule;
+
+            bool result = await _employee_WorkPlaceRepository.addWorkPlaceByEmployee(newEmployeeWorkPlace);
+
+            if (!result)
+            {
+                throw new EmployeeWorkPlaceException("There was an error adding the employee to workplace");
+            }
+
+            return result;
+        }
     }
 }

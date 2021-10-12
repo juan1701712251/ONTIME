@@ -20,6 +20,23 @@ namespace SCAPE.Infraestructure.Repositories
         }
 
         /// <summary>
+        /// Add Employee WorkPlace
+        /// </summary>
+        /// <param name="newEmployeeWorkPlace">new EmployeeWorkPlace</param>
+        /// <returns>A successful call returns true</returns>
+        public async Task<bool> addWorkPlaceByEmployee(EmployeeWorkPlace newEmployeeWorkPlace)
+        {
+            try
+            {
+                _context.EmployeeWorkPlace.Add(newEmployeeWorkPlace);
+                await _context.SaveChangesAsync();
+            } catch (Exception ex) {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Get employees with Image by workplace id(SCAPEDB in this case)
         /// </summary>
         /// <returns>>A successful call returns a Employee's List</returns>

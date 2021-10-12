@@ -49,7 +49,7 @@ namespace SCAPE.API
                                       builder
                                         .WithOrigins("http://localhost:19006")
                                         .WithMethods("GET","PUT","POST","DELETE")
-                                        .WithHeaders("Authorization")
+                                        .WithHeaders("Authorization","Content-Type")
                                         .AllowCredentials();
                                       
                                   });

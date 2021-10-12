@@ -39,12 +39,34 @@ namespace SCAPE.API.Controllers
         public async Task<IActionResult> insertEmployee(EmployeeCreateDTO employeeDTO)
         {   
             Employee employee = _mapper.Map<Employee>(employeeDTO);
-            
-            try{
+
+            try
+            {
                 await _employeeService.insertEmployee(employee);
                 await _userService.addUser(employee.Email, employeeDTO.Password, "Employee");
+                //It create association with wotkplace, the date is current by default
+                if (employeeDTO.WorkPlaceId != 0)
+                {
+                    await _employeeService.addWorkPlaceByEmployee(employeeDTO.DocumentId, employeeDTO.WorkPlaceId, DateTime.Now, DateTime.Now, null);
+                }
 
-            }catch(Exception ex)  {
+            }
+            catch(UserException ex)
+            {
+                string email = await _employeeService.deleteEmployee(employee.DocumentId);
+                if (email != null)
+                    await _userService.deleteUser(email);
+                return BadRequest(ex.Message);
+            }catch(EmployeeWorkPlaceException ex)
+            {
+                string email = await _employeeService.deleteEmployee(employee.DocumentId);
+                if (email != null)
+                    await _userService.deleteUser(email);
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+
                 return BadRequest(ex.Message);
             }
             
