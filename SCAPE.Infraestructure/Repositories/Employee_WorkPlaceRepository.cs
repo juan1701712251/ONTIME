@@ -42,6 +42,12 @@ namespace SCAPE.Infraestructure.Repositories
         /// <returns>>A successful call returns a Employee's List</returns>
         public async Task<List<EmployeeWorkPlace>> getEmployeesWithImageByWorkPlace(int workPlaceId)
         {
+            //Verify that Workplace Exist
+
+            WorkPlace wp = await _context.WorkPlace.FirstOrDefaultAsync(e => e.Id == workPlaceId);
+
+            if (wp == null) return null;
+
             return await _context.EmployeeWorkPlace.Where(e => e.IdWorkPlace == workPlaceId)
                                                     .Select(e => new EmployeeWorkPlace
                                                     {

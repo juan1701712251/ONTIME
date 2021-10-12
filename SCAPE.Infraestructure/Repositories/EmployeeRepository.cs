@@ -138,10 +138,14 @@ namespace SCAPE.Infraestructure.Repositories
         public async Task<string> deleteEmployee(string documentId)
         {
             Employee employeeDelete = await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentId);
-            string emailDelete = employeeDelete.Email;
-            employeeDelete.EmployeeWorkPlace.Clear();
-            _context.Employee.Remove(employeeDelete);
-            await _context.SaveChangesAsync();
+            string emailDelete = null;
+            if (employeeDelete != null)
+            {
+                emailDelete = employeeDelete.Email;
+                employeeDelete.EmployeeWorkPlace.Clear();
+                _context.Employee.Remove(employeeDelete);
+                await _context.SaveChangesAsync();
+            }
 
             return emailDelete;
 
