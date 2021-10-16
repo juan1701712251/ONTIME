@@ -187,7 +187,7 @@ namespace SCAPE.API.Controllers
         [Route("{documentId}")]
         public async Task<IActionResult> getEmployeeByDocument(string documentId)
         {
-            EmployeeDTO employeeDTO = new EmployeeDTO();
+            EmployeeWithImageDTO employeeDTO = new EmployeeWithImageDTO();
 
             try
             {
@@ -196,7 +196,7 @@ namespace SCAPE.API.Controllers
                 {
                     throw new EmployeeException("Employee doesnt exist with that document");
                 }
-                employeeDTO = _mapper.Map<EmployeeDTO>(employee);
+                employeeDTO = _mapper.Map<EmployeeWithImageDTO>(employee);
             }
             catch (Exception ex)
             {

@@ -5,6 +5,7 @@ using SCAPE.Domain.Interfaces;
 using SCAPE.Infraestructure.Context;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SCAPE.Infraestructure.Repositories
@@ -50,8 +51,22 @@ namespace SCAPE.Infraestructure.Repositories
         /// <returns>>A successful call returns a Employee</returns>
         public async Task<Employee> findEmployee(string documentId)
         {
-            return await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentId);
-            
+            //return await _context.Employee.FirstOrDefaultAsync(e => e.DocumentId == documentId);
+            List<Employee> employees = await _context.Employee.Where(e => e.DocumentId == documentId).Select(e => new Employee
+            {
+                Id = e.Id,
+                FirstName = e.FirstName,
+                LastName = e.LastName,
+                DocumentId = e.DocumentId,
+                Email = e.Email,
+                DateBirth = e.DateBirth,
+                Sex = e.Sex,
+                Image = e.Image
+            }).ToListAsync();
+
+            if (employees.Count == 0) return null;
+
+            return employees[0];
         }
 
         /// <summary>

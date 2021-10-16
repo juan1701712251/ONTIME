@@ -27,8 +27,8 @@ namespace SCAPE.UnitTests
         [Fact]
         public async Task ListEmployeesByEmptyWorkPlace()
         {
-            //In Database workplace (0) is Empty
-            List<EmployeeWorkPlace> employees = await _employeeService.getEmployeesWithImageByWorkplace(0);
+            //In Database workplace (2) is Empty
+            List<EmployeeWorkPlace> employees = await _employeeService.getEmployeesWithImageByWorkplace(2);
             Assert.NotNull(employees);
             Assert.Equal(employees.Count,0);
         }

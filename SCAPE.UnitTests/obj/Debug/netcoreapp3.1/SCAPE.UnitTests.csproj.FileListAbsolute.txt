@@ -1098,3 +1098,4 @@ E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.dll
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.pdb
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.UnitTests\obj\Debug\netcoreapp3.1\SCAPE.UnitTests.genruntimeconfig.cache
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.UnitTests\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
