@@ -4,6 +4,7 @@ using SCAPE.Domain.Entities;
 using SCAPE.Domain.Exceptions;
 using SCAPE.Domain.Interfaces;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -246,6 +247,18 @@ namespace SCAPE.Application.Services
 
         public async Task<string> deleteEmployee(string documentId)
         {
+            Employee employee = await findEmployee(documentId);
+
+            if (employee == null)
+            {
+                throw new EmployeeException("Employee with that document doesnt exist");
+            }
+
+            string persistenceFaceId = employee?.Image.FirstOrDefault()?.PersistenceFaceId;
+
+            if(persistenceFaceId != null)
+                await _faceRecognition.deleteFaceAsync(new Guid(persistenceFaceId));
+
             string emailDelete = await _employeeRepository.deleteEmployee(documentId);
             if (emailDelete == null)
             {

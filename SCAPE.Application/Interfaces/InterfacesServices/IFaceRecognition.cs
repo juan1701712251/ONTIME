@@ -11,6 +11,6 @@ namespace SCAPE.Application.Interfaces
         Task<Face> detectFaceAsync(String encodeImage);
         Task<String> addFaceAsync(String encodeImage, String faceListId);
         Task<String> findSimilar(Face face, String faceListId);
-        Task<bool> deleteFaceAsync(Guid persistenceFaceID, string faceListId);
+        Task<bool> deleteFaceAsync(Guid persistenceFaceID);
     }
 }

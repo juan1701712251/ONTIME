@@ -16,12 +16,14 @@ namespace SCAPE.Infraestructure.FaceRecognition
     {
         private IFaceClient client;
         private readonly IConfiguration _configuration;
+        private string FACE_LIST_ID;
 
         public FaceRecognition(IConfiguration configuration)
         {
             _configuration = configuration;
             String ENDPOINT = _configuration.GetValue<string>("AzureAPI:Endpoint");
             String API_KEY = _configuration.GetValue<string>("AzureAPI:Key");
+            FACE_LIST_ID = _configuration.GetValue<string>("AzureAPI:FaceListID");
             client = Authenticate(ENDPOINT, API_KEY);
         }
 
@@ -44,9 +46,9 @@ namespace SCAPE.Infraestructure.FaceRecognition
         }
 
 
-        public async Task<bool> deleteFaceAsync(Guid persistenceFaceID, string faceListId)
+        public async Task<bool> deleteFaceAsync(Guid persistenceFaceID)
         {
-            await client.FaceList.DeleteFaceAsync(faceListId, persistenceFaceID);
+            await client.FaceList.DeleteFaceAsync(FACE_LIST_ID, persistenceFaceID);
             return true;
 
         }
