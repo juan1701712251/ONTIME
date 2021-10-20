@@ -48,9 +48,14 @@ namespace SCAPE.Infraestructure.FaceRecognition
 
         public async Task<bool> deleteFaceAsync(Guid persistenceFaceID)
         {
-            await client.FaceList.DeleteFaceAsync(FACE_LIST_ID, persistenceFaceID);
+            try
+            {
+                await client.FaceList.DeleteFaceAsync(FACE_LIST_ID, persistenceFaceID);
+            }catch(Exception ex)
+            {
+                return false;
+            }
             return true;
-
         }
 
         /// <summary>

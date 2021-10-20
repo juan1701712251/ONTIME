@@ -54,6 +54,7 @@ namespace SCAPE.Infraestructure.Context.Configuration
                 .HasMaxLength(1)
                 .IsUnicode(false)
                 .IsFixedLength();
+           
         }
     }
 }

@@ -158,6 +158,10 @@ namespace SCAPE.Infraestructure.Repositories
             {
                 emailDelete = employeeDelete.Email;
                 employeeDelete.EmployeeWorkPlace.Clear();
+                foreach(EmployeeImage image in employeeDelete.Image)
+                {
+                    _context.Image.Remove(image);
+                }
                 _context.Employee.Remove(employeeDelete);
                 await _context.SaveChangesAsync();
             }

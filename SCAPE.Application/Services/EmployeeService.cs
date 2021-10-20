@@ -255,14 +255,20 @@ namespace SCAPE.Application.Services
             }
 
             string persistenceFaceId = employee?.Image.FirstOrDefault()?.PersistenceFaceId;
-
-            if(persistenceFaceId != null)
-                await _faceRecognition.deleteFaceAsync(new Guid(persistenceFaceId));
-
             string emailDelete = await _employeeRepository.deleteEmployee(documentId);
+
             if (emailDelete == null)
             {
                 throw new EmployeeException("There was an error deleting the employee ");
+            }
+
+            if (persistenceFaceId != null)
+            {
+                bool resultDeleteFace = await _faceRecognition.deleteFaceAsync(new Guid(persistenceFaceId));
+                if (!resultDeleteFace)
+                {
+                    throw new EmployeeException("There was an error deleting the Face from Azure. Anyway, the employee was deleted");
+                }
             }
             return emailDelete;
         }
