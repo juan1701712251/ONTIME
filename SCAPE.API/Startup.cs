@@ -47,7 +47,7 @@ namespace SCAPE.API
                                   builder =>
                                   {
                                       builder
-                                        .WithOrigins("http://localhost:19006")
+                                        .WithOrigins("http://localhost:19006","https://ontime-app.netlify.app")
                                         .WithMethods("GET","PUT","POST","DELETE")
                                         .WithHeaders("Authorization","Content-Type")
                                         .AllowCredentials();
