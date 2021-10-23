@@ -132,6 +132,11 @@ namespace SCAPE.API.Controllers
         /// </summary>
         /// <param name="data">Model with documentId, EncodeImage and faceListId in AsoociateFaceModel class </param>
         /// <returns>If  associate is succesfull, return a "Code status 200" and bool true </returns>
+        /// <remarks>
+        ///         <para>Exceptions</para>
+        ///         <para>FaceRecognitionException --> The image has already been associated with an employee </para>
+        ///         <para>EmployeeDocumentException --> Employee's document is not valid</para>
+        /// </remarks>
         [HttpPost]
         [Authorize(Roles = "Admin,Employeer")]
         [Route("AssociateImage")]
