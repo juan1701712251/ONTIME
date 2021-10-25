@@ -39,6 +39,7 @@ namespace SCAPE.API.Controllers
         /// </summary>
         /// <param name="data">Object with username and password</param>
         /// <returns>TokenModelDTO with OAuth2 Structure and JSON Web Token</returns>
+        /// <response code = "400">UserException --> There was an error with credentials</response>
         [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login([FromForm]UserModel data)
@@ -64,7 +65,10 @@ namespace SCAPE.API.Controllers
         }
 
         /*
-
+        /// <response code = "400">
+        /// UserException --> There was an error entering user.<br></br>
+        ///  UserException --> There is user linked to that email
+        /// </response>
         [HttpPost]
         [Authorize(Roles = "Admin")]
         [Route("AddUser")]

@@ -31,6 +31,11 @@ namespace SCAPE.API.Controllers
         /// If insert is fail, return a "Code error",
         /// If insert is succesful, return a "Code status 200"
         /// </returns>
+        /// <response code = "400">
+        /// AttendanceException --> The type of Attendance is a character, not a string<br></br>
+        /// AttendanceException --> There was an error entering attendance.<br></br>
+        /// AttendanceException --> There is not employee linked to that document
+        /// </response>
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> addAttendance(AttendanceModel data)

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SCAPE.API.ActionsModels;
 using SCAPE.Application.DTOs;
@@ -33,7 +34,23 @@ namespace SCAPE.API.Controllers
         /// </summary>
         /// <param name="employeeDTO">Object in DTO (Data Transfer Object) Format</param>
         /// <returns>If insert is succesful, return a "Code status 200"</returns>
-        
+        /// <remarks>
+        ///         <para>Exceptions</para>
+        ///         <para>RegisterEmployeeException --> The document, name and lastname fields are required</para>
+        ///         <para>RegisterEmployeeException --> Email address entered is not valid</para>
+        ///         <para>RegisterEmployeeException --> Document entered is not valid</para>
+        ///         <para>RegisterEmployeeException --> Sex entered is not valid</para>
+        ///         <para>RegisterEmployeeException --> An employee with the same document id has already been registered</para>
+        ///         <para>RegisterEmployeeException --> An employee with the same email has already been registered</para>
+        /// </remarks>
+        /// <response code = "400">
+        /// RegisterEmployeeException --> The document, name and lastname fields are required<br></br>
+        /// RegisterEmployeeException --> Email address entered is not valid<br></br>
+        /// RegisterEmployeeException --> Document entered is not valid<br></br>
+        /// RegisterEmployeeException --> Sex entered is not valid<br></br>
+        /// RegisterEmployeeException --> An employee with the same document id has already been registered<br></br>
+        /// RegisterEmployeeException --> An employee with the same email has already been registered
+        /// </response>
         [HttpPost]
         [Authorize(Roles = "Admin,Employeer")]
         public async Task<IActionResult> insertEmployee(EmployeeCreateDTO employeeDTO)
@@ -78,6 +95,17 @@ namespace SCAPE.API.Controllers
         /// </summary>
         /// <param name="documentId">Document´s Employee</param>
         /// <returns>If delete is succesful, return a "Code status 200"</returns>
+        /// <remarks>
+        ///         <para>Exceptions</para>
+        ///         <para>EmployeeException --> Employee with that document doesnt exist</para>
+        ///         <para>EmployeeException --> There was an error deleting the employee </para>
+        ///         <para>EmployeeException --> There was an error deleting the Face from Azure. Anyway, the employee was deleted</para>
+        /// </remarks>
+        /// <response code = "400">
+        /// EmployeeException --> Employee with that document doesnt exist<br></br>
+        /// EmployeeException --> There was an error deleting the employee <br></br>
+        /// EmployeeException --> There was an error deleting the Face from Azure. Anyway, the employee was deleted
+        /// </response>
         [HttpDelete]
         [Authorize(Roles = "Admin, Employeer")]
         [Route("{documentId}")]
@@ -104,7 +132,13 @@ namespace SCAPE.API.Controllers
         /// <param name="documentIdOLD">Documento antiguo del Empleado</param>
         /// <param name="employeeDTO">Object in DTO (Data Transfer Object) Format</param>
         /// <returns>If edit is succesful, return a "Code status 200"</returns>
-
+        /// <remarks>
+        ///         <para>Exceptions</para>
+        ///         <para>EmployeeException --> There was an error editing the employee </para>
+        /// </remarks>
+        /// <response code = "400">
+        /// EmployeeException --> There was an error editing the employee 
+        /// </response>
         [HttpPut]
         [Authorize(Roles = "Admin,Employeer")]
         [Route("{documentIdOLD}")]
@@ -137,6 +171,10 @@ namespace SCAPE.API.Controllers
         ///         <para>FaceRecognitionException --> The image has already been associated with an employee </para>
         ///         <para>EmployeeDocumentException --> Employee's document is not valid</para>
         /// </remarks>
+        /// <response code = "400">
+        /// FaceRecognitionException --> The image has already been associated with an employee <br></br>
+        /// EmployeeDocumentException --> Employee's document is not valid
+        /// </response>
         [HttpPost]
         [Authorize(Roles = "Admin,Employeer")]
         [Route("AssociateImage")]
@@ -162,7 +200,16 @@ namespace SCAPE.API.Controllers
         /// Get Employee by Face Recognition
         /// </summary>
         /// <param name="data">Model with faceListId and EncodeImage in FindEmployeeModel class</param>
-        /// <returns>If get is succesfull, return a Employee and "Code status 200"</returns>
+        /// <returns>If get is succesfull, return a Employee and "Code status 200"</returns>       
+        /// <remarks>
+        ///         <para>Exceptions</para>
+        ///         <para>FaceRecognitionException --> No persistedFaceid found for this face</para>
+        ///         <para>EmployeeException --> No Employee found in Database for this persistedFaceId</para>
+        /// </remarks>
+        /// <response code = "400">
+        /// FaceRecognitionException --> No persistedFaceid found for this face <br></br>
+        /// EmployeeException --> No Employee found in Database for this persistedFaceId
+        /// </response>
         [HttpPost]
         [Authorize]
         [Route("GetEmployeeByImage")]
@@ -187,6 +234,11 @@ namespace SCAPE.API.Controllers
         /// </summary>
         /// <param name="documentId">Document Id</param>
         /// <returns>If get is succesfull, return a Employee and "Code status 200"</returns>
+        /// <remarks>
+        ///         <para>Exceptions</para>
+        ///         <para>EmployeeException --> Employee doesnt exist with that document</para>
+        /// </remarks>
+        /// <response code = "400">EmployeeException --> Employee doesnt exist with that document</response>
         [HttpGet]
         [Authorize]
         [Route("{documentId}")]
@@ -216,6 +268,7 @@ namespace SCAPE.API.Controllers
         /// </summary>
         /// <param name="workplaceId">WorkPlace Id</param>
         /// <returns>List Employees with data of WorkPlace</returns>
+        /// <response code = "400">EmployeeWorkPlaceException --> There is no Workplace with that ID</response>
         [HttpGet]
         [Authorize(Roles = "Admin,Employeer")]
         [Route("GetEmployeesByWorkPlace/{workplaceId}")]
