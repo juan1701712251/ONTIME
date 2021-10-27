@@ -21,7 +21,7 @@ namespace SCAPE.Infraestructure.Context
         public virtual DbSet<EmployeeImage> Image { get; set; }
         public virtual DbSet<WorkPlace> WorkPlace { get; set; }
         public virtual DbSet<User> User { get; set; }
-
+        public virtual DbSet<Employer> Employer { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +37,8 @@ namespace SCAPE.Infraestructure.Context
             modelBuilder.ApplyConfiguration(new WorkPlaceConfiguration());
 
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+
+            modelBuilder.ApplyConfiguration(new EmployerConfiguration());
 
         }
 

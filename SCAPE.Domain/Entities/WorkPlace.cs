@@ -16,7 +16,10 @@ namespace SCAPE.Domain.Entities
         public string LatitudePosition { get; set; }
         public string LongitudePosition { get; set; }
         public string FaceListId { get; set; }
+        public string Description { get; set; }
+        public int IdEmployer { get; set; }
 
+        public virtual Employer IdEmployerNavigation { get; set; }
         public virtual ICollection<EmployeeWorkPlace> EmployeeWorkPlace { get; set; }
     }
 }

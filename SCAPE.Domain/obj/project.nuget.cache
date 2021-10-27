@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "gNzW0iKcjKYj9xk2PX42nQ4quhZ7m43xq8gghnIPy92/llFwkueORzJ7+wjaBDHjjZJxLgk2VUgeB26rnSZgig==",
+  "dgSpecHash": "gXhcCZ9SBDUep+ZCPPmldSZtvVbAcekkJT1fyjPyJwmAcaC1bSf/DACnxfPo6iL5VGqtE4RlNDAwv3c0rCGpfw==",
   "success": true,
-  "projectFilePath": "E:\\Materias U\\9 semestre\\Integrador\\ONTIME\\SCAPE.Domain\\SCAPE.Domain.csproj",
+  "projectFilePath": "C:\\Users\\GOMEZ\\Desktop\\Semestre_9\\Proyecto Integrador\\ONTIME\\SCAPE.Domain\\SCAPE.Domain.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\leoka\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\leoka\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\GOMEZ\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

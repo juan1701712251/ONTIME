@@ -146,7 +146,7 @@ namespace SCAPE.Application.Services
         /// <returns>If email is valid returns True</returns>
         private async Task<bool> isEmailValidForLogin(string email)
         {
-            //TODO: Also verify Employeers email and Admin emails
+            //TODO: Also verify Employers email and Admin emails
             bool isActiveEmployee = await _employeeRepository.existEmployeeByEmail(email);
             return true;
         }

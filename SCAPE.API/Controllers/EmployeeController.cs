@@ -52,7 +52,7 @@ namespace SCAPE.API.Controllers
         /// RegisterEmployeeException --> An employee with the same email has already been registered
         /// </response>
         [HttpPost]
-        [Authorize(Roles = "Admin,Employeer")]
+        [Authorize(Roles = "Admin,Employer")]
         public async Task<IActionResult> insertEmployee(EmployeeCreateDTO employeeDTO)
         {   
             Employee employee = _mapper.Map<Employee>(employeeDTO);
@@ -61,7 +61,7 @@ namespace SCAPE.API.Controllers
             {
                 await _employeeService.insertEmployee(employee);
                 await _userService.addUser(employee.Email, employeeDTO.Password, "Employee");
-                //It create association with wotkplace, the date is current by default
+                //It create association with workplace, the date is current by default
                 if (employeeDTO.WorkPlaceId != 0)
                 {
                     await _employeeService.addWorkPlaceByEmployee(employeeDTO.DocumentId, employeeDTO.WorkPlaceId, DateTime.Now, DateTime.Now, null);
@@ -107,7 +107,7 @@ namespace SCAPE.API.Controllers
         /// EmployeeException --> There was an error deleting the Face from Azure. Anyway, the employee was deleted
         /// </response>
         [HttpDelete]
-        [Authorize(Roles = "Admin, Employeer")]
+        [Authorize(Roles = "Admin, Employer")]
         [Route("{documentId}")]
         public async Task<IActionResult> deleteEmployee(string documentId)
         {
@@ -140,7 +140,7 @@ namespace SCAPE.API.Controllers
         /// EmployeeException --> There was an error editing the employee 
         /// </response>
         [HttpPut]
-        [Authorize(Roles = "Admin,Employeer")]
+        [Authorize(Roles = "Admin,Employer")]
         [Route("{documentIdOLD}")]
         public async Task<IActionResult> editEmployee(string documentIdOLD,EmployeeEditDTO employeeDTO)
         {
@@ -176,7 +176,7 @@ namespace SCAPE.API.Controllers
         /// EmployeeDocumentException --> Employee's document is not valid
         /// </response>
         [HttpPost]
-        [Authorize(Roles = "Admin,Employeer")]
+        [Authorize(Roles = "Admin,Employer")]
         [Route("AssociateImage")]
         public async Task<IActionResult> associateFace(AssociateFaceModel data)
         {
@@ -270,7 +270,7 @@ namespace SCAPE.API.Controllers
         /// <returns>List Employees with data of WorkPlace</returns>
         /// <response code = "400">EmployeeWorkPlaceException --> There is no Workplace with that ID</response>
         [HttpGet]
-        [Authorize(Roles = "Admin,Employeer")]
+        [Authorize(Roles = "Admin,Employer")]
         [Route("GetEmployeesByWorkPlace/{workplaceId}")]
         public async Task<IActionResult> getEmployeesWithImage(int workplaceId)
         {

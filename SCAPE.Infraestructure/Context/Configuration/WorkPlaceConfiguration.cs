@@ -19,6 +19,15 @@ namespace SCAPE.Infraestructure.Context.Configuration
                 .HasMaxLength(1000)
                 .IsUnicode(false);
 
+            entity.Property(e => e.Description)
+                    .HasColumnName("description")
+                    .HasMaxLength(500)
+                    .IsUnicode(false);
+
+            entity.Property(e => e.IdEmployer)
+                    .HasColumnName("idEmployer")
+                    .HasDefaultValueSql("((1))");
+
             entity.Property(e => e.FaceListId)
                .HasColumnName("faceListId")
                .HasMaxLength(500)
@@ -39,6 +48,11 @@ namespace SCAPE.Infraestructure.Context.Configuration
                 .HasColumnName("name")
                 .HasMaxLength(1000)
                 .IsUnicode(false);
+
+            entity.HasOne(d => d.IdEmployerNavigation)
+                    .WithMany(p => p.WorkPlace)
+                    .HasForeignKey(d => d.IdEmployer)
+                    .HasConstraintName("FK_Employer_WorkPlace");
         }
     }
 }

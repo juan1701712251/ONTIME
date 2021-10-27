@@ -19,6 +19,25 @@ CREATE TABLE [dbo].[Employee](
 ) ON [PRIMARY]
 GO
 
+USE [SCAPEDB]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Employer](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[documentId] [varchar](500) NOT NULL UNIQUE,
+	[firstName] [varchar](500) NOT NULL,
+	[lastName] [varchar](500) NOT NULL,
+	[email] [varchar](500) NULL
+ CONSTRAINT [PK_Employer] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -28,7 +47,9 @@ CREATE TABLE [dbo].[WorkPlace](
 	[name] [varchar](1000) NOT NULL,
 	[address] [varchar](1000) NULL,
 	[latitudePosition] [varchar](500) NULL,
+	[description] [varchar](500) NULL,
 	[longitudePosition] [varchar](500) NULL,
+	[idEmployer] [int] NOT NULL,
 	[faceListId] [varchar](500) NULL,
  CONSTRAINT [PK_WorkPlace] PRIMARY KEY CLUSTERED 
 (
@@ -36,6 +57,8 @@ CREATE TABLE [dbo].[WorkPlace](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
+
 
 SET ANSI_NULLS ON
 GO
@@ -54,6 +77,7 @@ CREATE TABLE [dbo].[Employee_WorkPlace](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+
 
 SET ANSI_NULLS ON
 GO
@@ -119,7 +143,7 @@ GO
 ALTER TABLE [dbo].[Employee_WorkPlace] CHECK CONSTRAINT [FK_EmployeeWorkPlace]
 GO
 ALTER TABLE [dbo].[Employee_WorkPlace]  WITH NOCHECK ADD  CONSTRAINT [FK_WorkPlace] FOREIGN KEY([idWorkPlace])
-REFERENCES [dbo].[WorkPlace] ([id])
+REFERENCES [dbo].[WorkPlace] ([id]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Employee_WorkPlace] CHECK CONSTRAINT [FK_WorkPlace]
 GO
@@ -130,5 +154,14 @@ ALTER TABLE [dbo].[Attendance] CHECK CONSTRAINT [FK_Employee]
 
 ALTER TABLE [dbo].[Image]  WITH NOCHECK ADD  CONSTRAINT [FK_EmployeeImage] FOREIGN KEY([idEmployee])
 REFERENCES [dbo].[Employee] ([id]) ON DELETE CASCADE
+
 GO
 ALTER TABLE [dbo].[Image] CHECK CONSTRAINT [FK_EmployeeImage]
+
+ALTER TABLE [dbo].[WorkPlace]  WITH NOCHECK ADD  CONSTRAINT [FK_Employer_WorkPlace] FOREIGN KEY([idEmployer])
+REFERENCES [dbo].[Employer] ([id]) ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[WorkPlace] CHECK CONSTRAINT [FK_Emloyer_WorkPlace]
+
+CREATE UNIQUE INDEX [IX_EMAIL_EMPLOYER] ON [dbo].[Employer]([email]) WHERE [email] IS NOT NULL;
+CREATE UNIQUE INDEX [IX_EMAIL] ON [dbo].[Employee]([email]) WHERE [email] IS NOT NULL;
