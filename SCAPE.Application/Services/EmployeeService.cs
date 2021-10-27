@@ -209,19 +209,7 @@ namespace SCAPE.Application.Services
             return await _employeeRepository.getEmployees();
         }
 
-        /// <summary>
-        /// Get All Employees With Image By WorkPlace ID
-        /// </summary>
-        /// <returns></returns>
-        public async Task<WorkPlace> getEmployeesWithImageByWorkplace(int workPlaceId)
-        {
-            WorkPlace workplace =  await _employee_WorkPlaceRepository.getEmployeesWithImageByWorkPlace(workPlaceId);
-            if(workplace == null)
-            {
-                throw new EmployeeWorkPlaceException("There is no Workplace with that ID");
-            }
-            return workplace;
-        }
+        
 
         /// <summary>
         /// Edit Employee

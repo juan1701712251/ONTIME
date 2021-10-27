@@ -10,5 +10,6 @@ namespace SCAPE.Application.Interfaces
     {
         Task<int> insertWorkPlace(WorkPlace workPlace,string emailEmployer, string faceListID);
         Task<List<WorkPlace>> getAll(string emailEmployer);
+        Task<WorkPlace> getEmployeesWithImageByWorkplace(int workPlaceId);
     }
 }

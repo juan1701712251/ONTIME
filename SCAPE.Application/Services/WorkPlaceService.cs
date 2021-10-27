@@ -17,11 +17,27 @@ namespace SCAPE.Application.Services
 
         private readonly IWorkPlaceRepository _workPlaceRepository;
         private readonly IEmployerRepository _employerRepository;
+        private readonly IEmployee_WorkPlaceRepository _employee_WorkPlaceRepository;
 
-        public WorkPlaceService(IWorkPlaceRepository workPlaceRepository,IEmployerRepository employerRepository)
+        public WorkPlaceService(IWorkPlaceRepository workPlaceRepository,IEmployerRepository employerRepository,IEmployee_WorkPlaceRepository employee_WorkPlaceRepository)
         {
             _workPlaceRepository = workPlaceRepository;
             _employerRepository = employerRepository;
+            _employee_WorkPlaceRepository = employee_WorkPlaceRepository;
+        }
+
+        /// <summary>
+        /// Get All Employees With Image By WorkPlace ID
+        /// </summary>
+        /// <returns></returns>
+        public async Task<WorkPlace> getEmployeesWithImageByWorkplace(int workPlaceId)
+        {
+            WorkPlace workplace = await _employee_WorkPlaceRepository.getEmployeesWithImageByWorkPlace(workPlaceId);
+            if (workplace == null)
+            {
+                throw new EmployeeWorkPlaceException("There is no Workplace with that ID");
+            }
+            return workplace;
         }
 
         /// <summary>
