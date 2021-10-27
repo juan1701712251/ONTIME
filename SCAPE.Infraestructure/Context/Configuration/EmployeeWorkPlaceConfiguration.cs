@@ -37,7 +37,7 @@ namespace SCAPE.Infraestructure.Context.Configuration
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_EmployeeWorkPlace");
 
-            entity.HasOne(d => d.IdWorkPlaceNavigation)
+            entity.HasOne(d => d.WorkPlace)
                 .WithMany(p => p.EmployeeWorkPlace)
                 .HasForeignKey(d => d.IdWorkPlace)
                 .OnDelete(DeleteBehavior.ClientSetNull)

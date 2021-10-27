@@ -9,5 +9,6 @@ namespace SCAPE.Application.Interfaces
     public interface IWorkPlaceService
     {
         Task<int> insertWorkPlace(WorkPlace workPlace,string emailEmployer, string faceListID);
+        Task<List<WorkPlace>> getAll(string emailEmployer);
     }
 }

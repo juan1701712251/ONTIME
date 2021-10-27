@@ -267,25 +267,25 @@ namespace SCAPE.API.Controllers
         /// Get All Employees With Image By WorkPlace
         /// </summary>
         /// <param name="workplaceId">WorkPlace Id</param>
-        /// <returns>List Employees with data of WorkPlace</returns>
+        /// <returns>WorkPlace with List of employees </returns>
         /// <response code = "400">EmployeeWorkPlaceException --> There is no Workplace with that ID</response>
         [HttpGet]
         [Authorize(Roles = "Admin,Employer")]
         [Route("GetEmployeesByWorkPlace/{workplaceId}")]
         public async Task<IActionResult> getEmployeesWithImage(int workplaceId)
         {
-            List<EmployeeWorkPlace> employees = null;
+            WorkPlace workplace = null;
             try
             {
-                employees = await _employeeService.getEmployeesWithImageByWorkplace(workplaceId);
+                workplace = await _employeeService.getEmployeesWithImageByWorkplace(workplaceId);
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
-            List<EmployeeWorkPlaceDTO> employeesDTO = _mapper.Map<List<EmployeeWorkPlaceDTO>>(employees);
-
-            return Ok(employeesDTO);
+            WorkPlaceWithEmployeesDTO workPlaceWithEmployeesDTO = _mapper.Map<WorkPlaceWithEmployeesDTO>(workplace);
+            
+            return Ok(workPlaceWithEmployeesDTO);
         }
     }
 }

@@ -18,7 +18,11 @@ namespace SCAPE.Infraestructure.Repositories
         {
             _context = context;
         }
-
+        /// <summary>
+        /// Find a employer by email
+        /// </summary>
+        /// <param name="email">Employer's email</param>
+        /// <returns>If exist employer with that email, it returns employer</returns>
         public async Task<Employer> findEmployerByEmail(string email)
         {
             Employer employer = await _context.Employer.FirstOrDefaultAsync(i => i.Email == email);

@@ -18,7 +18,21 @@ namespace SCAPE.Infraestructure.Repositories
         {
             _context = context;
         }
-
+        /// <summary>
+        /// Get al Workplace
+        /// </summary>
+        /// <param name="idEmployer">Employer's Id</param>
+        /// <returns>List of workplaces corresponding Employer's id</returns>
+        public async Task<List<WorkPlace>> getAll(int idEmployer)
+        {
+            List<WorkPlace> workPlaces = await _context.WorkPlace.Where(w => w.IdEmployer == idEmployer).ToListAsync(); 
+            return workPlaces;
+        }
+        /// <summary>
+        /// Insert a new WorkPlace
+        /// </summary>
+        /// <param name="workPlace">Objecto Workplace with data</param>
+        /// <returns>If insert is succesful return id</returns>
         public async Task<int> insertWorkPlace(WorkPlace workPlace)
         {
             try

@@ -24,6 +24,40 @@ namespace SCAPE.Application.Services
             _employerRepository = employerRepository;
         }
 
+        /// <summary>
+        /// Get all workplace
+        /// </summary>
+        /// <param name="emailEmployer">Employer's Email</param>
+        /// <returns>If exist employer with that email, it returns List of workplace</returns>
+        public async Task<List<WorkPlace>> getAll(string emailEmployer)
+        {
+            // Verify that email's employer exist in database and get this employer
+            Employer employer = await _employerRepository.findEmployerByEmail(emailEmployer);
+
+            if (employer == null)
+            {
+                throw new EmployerException("There is no Employer with that email");
+            }
+
+            // Insert in Repository
+            List<WorkPlace> workPlaces = await _workPlaceRepository.getAll(employer.Id);
+
+            if (workPlaces.Count == 0)
+            {
+                throw new WorkPlaceException("There is no workplaces for this employer");
+            }
+
+            return workPlaces;
+
+        }
+
+        /// <summary>
+        /// Insert a new Workplace
+        /// </summary>
+        /// <param name="workPlace">workplace Data of DTO</param>
+        /// <param name="emailEmployer">employer's email</param>
+        /// <param name="faceListID">Facelistid associated to this workplace</param>
+        /// <returns>If calls is succesful returns workplace id</returns>
         public async Task<int> insertWorkPlace(WorkPlace workPlace,string emailEmployer, string faceListID)
         {
             // Verify that email's employer exist in database and get this employer

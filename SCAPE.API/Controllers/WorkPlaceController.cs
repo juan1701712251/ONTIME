@@ -29,7 +29,13 @@ namespace SCAPE.API.Controllers
             _mapper = mapper;
         }
 
-        
+        /// <summary>
+        /// Add a new WorkPlace
+        /// </summary>
+        /// <param name="workPlaceDTO">Data of workplace</param>
+        /// <returns>If insert is succesful return id workplace</returns>
+        /// <response code = "400">EmployerException --> There is no Employer with that email<br></br>
+        ///                         WorkPlaceException --> There was an error insert WorkPlace. Please verify fields</response>
         [HttpPost]
         [Authorize(Roles = "Admin,Employer")]
         public async Task<IActionResult> addWorkPlace(WorkPlaceDTO workPlaceDTO)
@@ -55,6 +61,37 @@ namespace SCAPE.API.Controllers
             }
 
             return Ok(idWorkPlace);
+        }
+
+        /// <summary>
+        /// Get All WorkPlace of User (Employer)
+        /// </summary>
+        /// <returns>If insert is succesful return List of workplace</returns>
+        /// <response code = "400">EmployerException --> There is no Employer with that email<br></br>
+        ///                         WorkPlaceException --> There is no workplaces for this employer</response>
+        [HttpGet]
+        [Authorize(Roles = "Admin,Employer")]
+        public async Task<IActionResult> getAllWorkPlace()
+        {
+            //Get Email of JWT
+            
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            string emailEmployer = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
+
+            List<WorkPlace> workPlaces;
+
+            try
+            {
+                workPlaces = await _workPlaceService.getAll(emailEmployer);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            List<WorkPlaceDATAOUTDTO> workPlacesDTO = _mapper.Map<List<WorkPlaceDATAOUTDTO>>(workPlaces);
+
+            return Ok(workPlacesDTO);
         }
     }
 }

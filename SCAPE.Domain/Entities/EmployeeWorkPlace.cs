@@ -12,6 +12,6 @@ namespace SCAPE.Domain.Entities
         public string Schedule { get; set; }
 
         public virtual Employee Employee { get; set; }
-        public virtual WorkPlace IdWorkPlaceNavigation { get; set; }
+        public virtual WorkPlace WorkPlace { get; set; }
     }
 }
