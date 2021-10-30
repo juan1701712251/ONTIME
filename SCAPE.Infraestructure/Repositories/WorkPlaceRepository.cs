@@ -18,6 +18,44 @@ namespace SCAPE.Infraestructure.Repositories
         {
             _context = context;
         }
+
+        public async Task<bool> deleteWorkPlace(WorkPlace ctWorkPlace)
+        {
+            try
+            {
+                _context.WorkPlace.Remove(ctWorkPlace);
+                await _context.SaveChangesAsync();
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<bool> editWorkPlace(WorkPlace editWorkPlace,WorkPlace ctWorkPlace)
+        {
+            try
+            {
+                ctWorkPlace.Name = editWorkPlace.Name ?? ctWorkPlace.Name;
+                ctWorkPlace.Address = editWorkPlace.Address ?? ctWorkPlace.Address;
+                ctWorkPlace.LatitudePosition = editWorkPlace.LatitudePosition ?? ctWorkPlace.LatitudePosition;
+                ctWorkPlace.LongitudePosition = editWorkPlace.LongitudePosition ?? ctWorkPlace.LongitudePosition;
+                ctWorkPlace.Description = editWorkPlace.Description ?? ctWorkPlace.Description;
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public async Task<WorkPlace> get(int workPlaceId)
+        {
+            return await _context.WorkPlace.FirstOrDefaultAsync(w => w.Id == workPlaceId);
+        }
+
         /// <summary>
         /// Get al Workplace
         /// </summary>

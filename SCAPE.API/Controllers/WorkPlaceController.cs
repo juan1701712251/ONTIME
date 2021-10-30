@@ -64,6 +64,72 @@ namespace SCAPE.API.Controllers
         }
 
         /// <summary>
+        /// Edit a Workplace
+        /// </summary>
+        /// <param name="workPlaceDTO">Object with workplace's data</param>
+        /// <param name="workplaceId">Workplace's Id</param>
+        /// <returns>If edit is succesful return true</returns>
+        /// <response code = "400">WorkPlaceException --> There is no WorkPlace with that Id<br></br>
+        ///                         WorkPlaceException --> This employer can't edit this Workplace<br></br>
+        ///                         WorkPlaceException --> There was an error editing WorkPlace. Please verify fields</response>
+        [HttpPut]
+        [Authorize(Roles = "Admin,Employer")]
+        [Route("{workplaceId}")]
+        public async Task<IActionResult> updateWorkPlace(WorkPlaceUpdateDTO workPlaceDTO, int workplaceId)
+        {
+            WorkPlace editWorkPlace = _mapper.Map<WorkPlace>(workPlaceDTO);
+            editWorkPlace.LatitudePosition = workPlaceDTO.Latitude;
+            editWorkPlace.LongitudePosition = workPlaceDTO.Longitude;
+
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            string emailEmployer = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
+
+            bool isEdit;
+
+            try
+            {
+                isEdit = await _workPlaceService.editWorkPlace(editWorkPlace,workplaceId,emailEmployer);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(isEdit);
+        }
+
+        /// <summary>
+        /// Delete a WorkPlace By Id
+        /// </summary>
+        /// <param name="workplaceId">WorkPlace's Id</param>
+        /// <returns>If delete is succesful return true</returns>
+        /// <response code = "400">WorkPlaceException -->There is no WorkPlace with that Id<br></br>
+        ///                         WorkPlaceException --> This employer can't delete this Workplace<br></br>
+        ///                         WorkPlaceException --> There was an error deleting WorkPlace. Please verify fields</response>
+        [HttpDelete]
+        [Authorize(Roles = "Admin,Employer")]
+        [Route("{workplaceId}")]
+        public async Task<IActionResult> deleteWorkPlace(int workplaceId)
+        {
+            var claimsIdentity = User.Identity as ClaimsIdentity;
+            string emailEmployer = claimsIdentity.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
+
+            bool isDelete;
+
+            try
+            {
+                isDelete = await _workPlaceService.deleteWorkPlace(workplaceId, emailEmployer);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(isDelete);
+        }
+
+
+        /// <summary>
         /// Get All WorkPlace of User (Employer)
         /// </summary>
         /// <returns>If insert is succesful return List of workplace</returns>

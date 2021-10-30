@@ -58,11 +58,6 @@ namespace SCAPE.Application.Services
             // Insert in Repository
             List<WorkPlace> workPlaces = await _workPlaceRepository.getAll(employer.Id);
 
-            if (workPlaces.Count == 0)
-            {
-                throw new WorkPlaceException("There is no workplaces for this employer");
-            }
-
             return workPlaces;
 
         }
@@ -97,6 +92,82 @@ namespace SCAPE.Application.Services
             }
 
             return workPlaceId;
+        }
+
+        public async Task<WorkPlace> findWorkPlaceById(int workPlaceId)
+        {
+            return await _workPlaceRepository.get(workPlaceId);
+        }
+
+        /// <summary>
+        /// Edit a Workplace Service
+        /// </summary>
+        /// <param name="editWorkPlace">Object with data to Edit</param>
+        /// <returns>If calls is succesful returns true</returns>
+        public async Task<bool> editWorkPlace(WorkPlace editWorkPlace, int workPlaceId,string emailEmployer)
+        {
+            //Get WorkPlace
+
+            WorkPlace ctWorkPlace = await findWorkPlaceById(workPlaceId);
+
+            if (ctWorkPlace == null)
+            {
+                throw new WorkPlaceException("There is no WorkPlace with that Id");
+            }
+
+            //Verify that WorkPlace belong to Employer 
+
+            Employer e = await _employerRepository.findEmployerByEmail(emailEmployer);
+
+            if(ctWorkPlace.IdEmployer != e.Id)
+            {
+                throw new WorkPlaceException("This employer can't edit this Workplace");
+            }
+            
+            bool isEdit = await _workPlaceRepository.editWorkPlace(editWorkPlace,ctWorkPlace);
+
+            if (!isEdit)
+            {
+                throw new WorkPlaceException("There was an error editing WorkPlace. Please verify fields");
+            }
+
+            return isEdit;
+        }
+
+        /// <summary>
+        /// Delete a WorkPlace
+        /// </summary>
+        /// <param name="workplaceId">Workplace's Id</param>
+        /// <param name="emailEmployer">Email to verify</param>
+        /// <returns>If calls is succesful returns true</returns>
+        public async Task<bool> deleteWorkPlace(int workplaceId, string emailEmployer)
+        {
+            //Get WorkPlace
+
+            WorkPlace ctWorkPlace = await findWorkPlaceById(workplaceId);
+
+            if (ctWorkPlace == null)
+            {
+                throw new WorkPlaceException("There is no WorkPlace with that Id");
+            }
+
+            //Verify that WorkPlace belong to Employer 
+
+            Employer e = await _employerRepository.findEmployerByEmail(emailEmployer);
+
+            if (ctWorkPlace.IdEmployer != e.Id)
+            {
+                throw new WorkPlaceException("This employer can't delete this Workplace");
+            }
+
+            bool isDelete = await _workPlaceRepository.deleteWorkPlace(ctWorkPlace);
+
+            if (!isDelete)
+            {
+                throw new WorkPlaceException("There was an error deleting WorkPlace");
+            }
+
+            return isDelete;
         }
     }
 }

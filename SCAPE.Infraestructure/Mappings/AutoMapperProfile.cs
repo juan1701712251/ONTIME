@@ -24,6 +24,8 @@ namespace SCAPE.Infraestructure.Mappings
             CreateMap<WorkPlace, WorkPlaceWithEmployeesDTO>();
             CreateMap<WorkPlace, WorkPlaceDATAOUTDTO> ();
             CreateMap<WorkPlaceDATAOUTDTO, WorkPlace>();
+            CreateMap<WorkPlace, WorkPlaceUpdateDTO>();
+            CreateMap<WorkPlaceUpdateDTO, WorkPlace>();
         }
        
     }
