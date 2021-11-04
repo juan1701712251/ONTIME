@@ -31,6 +31,11 @@ namespace SCAPE.UnitTests
             services.AddTransient<IAttendanceRepository, AttendanceRepository>();
             services.AddTransient<IAttendanceService, AttendanceService>();
 
+            services.AddTransient<IWorkPlaceService, WorkPlaceService>();
+            services.AddTransient<IWorkPlaceRepository, WorkPlaceRepository>();
+            services.AddTransient<IEmployerRepository, EmployerRepository>();
+          
+
             services.AddTransient<IFaceRecognition, FaceRecognition>();
 
             services.AddTransient<ITokenService, TokenService>();
