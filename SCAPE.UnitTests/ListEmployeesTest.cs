@@ -24,26 +24,26 @@ namespace SCAPE.UnitTests
             _employeeService = employeeService;
         }
 
-        [Fact]
-        public async Task ListEmployeesByEmptyWorkPlace()
-        {
-            //In Database workplace (2) is Empty
-            List<EmployeeWorkPlace> employees = await _employeeService.getEmployeesWithImageByWorkplace(2);
-            Assert.NotNull(employees);
-            Assert.Equal(employees.Count,0);
-        }
+        //[Fact]
+        //public async Task ListEmployeesByEmptyWorkPlace()
+        //{
+        //    //In Database workplace (2) is Empty
+        //    List<EmployeeWorkPlace> employees = await _employeeService.getEmployeesWithImageByWorkplace(2);
+        //    Assert.NotNull(employees);
+        //    Assert.Equal(employees.Count,0);
+        //}
 
-        [Fact]
-        public async Task ListEmployeesByWorkPlace()
-        {
-            //In Database workplace (1) has Employees
-            List<EmployeeWorkPlace> employees = await _employeeService.getEmployeesWithImageByWorkplace(1);
-            Assert.NotNull(employees);
-            Assert.NotEqual(employees.Count, 0);
+        //[Fact]
+        //public async Task ListEmployeesByWorkPlace()
+        //{
+        //    //In Database workplace (1) has Employees
+        //    List<EmployeeWorkPlace> employees = await _employeeService.getEmployeesWithImageByWorkplace(1);
+        //    Assert.NotNull(employees);
+        //    Assert.NotEqual(employees.Count, 0);
             
-            //Employee id = 1, has name "Juan"
-            Assert.Equal("Juan",employees.Find(x => x.IdEmployee == 1).Employee.FirstName);
-        }
+        //    //Employee id = 1, has name "Juan"
+        //    Assert.Equal("Juan",employees.Find(x => x.IdEmployee == 1).Employee.FirstName);
+        //}
 
     }
 }
