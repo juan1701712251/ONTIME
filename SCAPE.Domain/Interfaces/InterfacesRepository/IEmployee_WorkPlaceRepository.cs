@@ -10,5 +10,7 @@ namespace SCAPE.Domain.Interfaces
     {
         Task<WorkPlace> getEmployeesWithImageByWorkPlace(int workPlaceId);
         Task<bool> addWorkPlaceByEmployee(EmployeeWorkPlace newEmployeeWorkPlace);
+        Task<EmployeeWorkPlace> findEmployeeWorkPlace(int workPlaceId, int idEmployee);
+        Task<bool> update(EmployeeWorkPlace employeeWorkPlace);
     }
 }

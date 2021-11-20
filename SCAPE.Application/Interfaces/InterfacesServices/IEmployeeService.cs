@@ -21,6 +21,7 @@ namespace SCAPE.Application.Interfaces
         
         Task<bool> editEmployee(string documentIdOLD, Employee employeeEdit);
         Task<string> deleteEmployee(string documentId);
-        Task<bool> addWorkPlaceByEmployee(string documentId, int workPlaceId, DateTime StartJobDate, DateTime EndJobDate, string Schedule);
+        Task<bool> addWorkPlaceByEmployee(string documentId, int workPlaceId, DateTime StartJobDate, DateTime EndJobDate);
+        Task<bool> addScheduleByEmployee(DataScheduleModelDTO dataScheduleModel);
     }
 }

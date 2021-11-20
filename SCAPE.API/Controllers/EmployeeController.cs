@@ -64,7 +64,7 @@ namespace SCAPE.API.Controllers
                 //It create association with workplace, the date is current by default
                 if (employeeDTO.WorkPlaceId != 0)
                 {
-                    await _employeeService.addWorkPlaceByEmployee(employeeDTO.DocumentId, employeeDTO.WorkPlaceId, DateTime.Now, DateTime.Now, null);
+                    await _employeeService.addWorkPlaceByEmployee(employeeDTO.DocumentId, employeeDTO.WorkPlaceId, DateTime.Now, DateTime.Now);
                 }
 
             }
@@ -263,6 +263,22 @@ namespace SCAPE.API.Controllers
             return Ok(employeeDTO);
         }
 
-        
+        [HttpPost]
+        [Authorize(Roles = "Admin,Employer")]
+        [Route("schedule")]
+        public async Task<IActionResult> addScheduleByEmployee(DataScheduleModelDTO dataScheduleModel)
+        {
+            bool result;
+            try
+            {
+                result = await _employeeService.addScheduleByEmployee(dataScheduleModel);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(result);
+        }
     }
 }

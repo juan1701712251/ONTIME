@@ -22,15 +22,6 @@ namespace SCAPE.Infraestructure.Context.Configuration
                 .HasColumnName("endJobDate")
                 .HasColumnType("datetime");
 
-            entity.Property(e => e.Schedule)           
-                .HasColumnName("schedule")
-                .HasMaxLength(500)
-                .IsUnicode(false);
-
-            entity.Property(e => e.StartJobDate)
-                .HasColumnName("startJobDate")
-                .HasColumnType("datetime");
-
             entity.HasOne(d => d.Employee)
                 .WithMany(p => p.EmployeeWorkPlace)
                 .HasForeignKey(d => d.IdEmployee)

@@ -68,12 +68,30 @@ CREATE TABLE [dbo].[Employee_WorkPlace](
 	[idEmployee] [int]  NOT NULL,
 	[idWorkPlace] [int]  NOT NULL,
 	[startJobDate] [datetime] NULL,
-	[endJobDate] [datetime] NULL,
-	[schedule] [varchar](500) NULL,
+	[endJobDate] [datetime] NULL
 	
  CONSTRAINT [PK_EmployeeWorkPlace] PRIMARY KEY CLUSTERED 
 (
 	[idEmployee], [idWorkPlace] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Employee_Schedule](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[idEmployee] [int]  NOT NULL,
+	[idWorkPlace] [int]  NOT NULL,
+	[startMinute] [int] NOT NULL,
+	[endMinute] [int] NOT NULL,
+	[dayOfWeek] [int] NOT NULL,
+	
+ CONSTRAINT [PK_Employee_Schedule] PRIMARY KEY CLUSTERED 
+(
+	[id], [idEmployee], [idWorkPlace] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
@@ -162,6 +180,22 @@ ALTER TABLE [dbo].[WorkPlace]  WITH NOCHECK ADD  CONSTRAINT [FK_Employer_WorkPla
 REFERENCES [dbo].[Employer] ([id]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[WorkPlace] CHECK CONSTRAINT [FK_Emloyer_WorkPlace]
+
+-- Constraints Employee Schedule
+
+GO
+ALTER TABLE [dbo].[Employee_Schedule]  WITH NOCHECK ADD  CONSTRAINT [FK_Employee_WorkPlace_Schedule] FOREIGN KEY([idWorkPlace])
+REFERENCES [dbo].[WorkPlace] ([id]) ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Employee_Schedule] CHECK CONSTRAINT [FK_Employee_WorkPlace_Schedule]
+
+GO
+ALTER TABLE [dbo].[Employee_Schedule]  WITH NOCHECK ADD  CONSTRAINT [FK_Employee_WorkPlace_Schedule_2] FOREIGN KEY([idEmployee])
+REFERENCES [dbo].[Employee] ([id]) ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Employee_Schedule] CHECK CONSTRAINT [FK_Employee_WorkPlace_Schedule_2]
+
+
 
 CREATE UNIQUE INDEX [IX_EMAIL_EMPLOYER] ON [dbo].[Employer]([email]) WHERE [email] IS NOT NULL;
 CREATE UNIQUE INDEX [IX_EMAIL] ON [dbo].[Employee]([email]) WHERE [email] IS NOT NULL;

@@ -22,6 +22,7 @@ namespace SCAPE.Infraestructure.Context
         public virtual DbSet<WorkPlace> WorkPlace { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Employer> Employer { get; set; }
+        public virtual DbSet<EmployeeSchedule> EmployeeSchedule { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -39,6 +40,8 @@ namespace SCAPE.Infraestructure.Context
             modelBuilder.ApplyConfiguration(new UserConfiguration());
 
             modelBuilder.ApplyConfiguration(new EmployerConfiguration());
+
+            modelBuilder.ApplyConfiguration(new EmployeeScheduleConfiguration());
 
         }
 

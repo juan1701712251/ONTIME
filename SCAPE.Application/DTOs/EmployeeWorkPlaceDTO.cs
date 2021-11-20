@@ -8,7 +8,6 @@ namespace SCAPE.Application.DTOs
         public int IdWorkPlace { get; set; }
         public DateTime StartJobDate { get; set; }
         public DateTime EndJobDate { get; set; }
-        public string Schedule { get; set; }
 
         public EmployeeWithImageDTO Employee { get; set; }
     }

@@ -36,6 +36,11 @@ namespace SCAPE.Infraestructure.Repositories
             return true;
         }
 
+        public async Task<EmployeeWorkPlace> findEmployeeWorkPlace(int workPlaceId, int idEmployee)
+        {
+            return await _context.EmployeeWorkPlace.FirstOrDefaultAsync(ew => ew.IdEmployee == idEmployee && ew.IdWorkPlace == workPlaceId);
+        }
+
         /// <summary>
         /// Get employees with Image by workplace id(SCAPEDB in this case)
         /// </summary>
@@ -58,7 +63,6 @@ namespace SCAPE.Infraestructure.Repositories
                                                                                                                 IdWorkPlace = e.IdWorkPlace,
                                                                                                                 StartJobDate = e.StartJobDate,
                                                                                                                 EndJobDate = e.EndJobDate,
-                                                                                                                Schedule = e.Schedule,
                                                                                                                 Employee = new Employee
                                                                                                                 {
                                                                                                                     Id = e.Employee.Id,
@@ -103,6 +107,19 @@ namespace SCAPE.Infraestructure.Repositories
             */
 
 
+        }
+
+        public async Task<bool> update(EmployeeWorkPlace employeeWorkPlace)
+        {
+            try
+            {
+                _context.EmployeeWorkPlace.Update(employeeWorkPlace);
+                await _context.SaveChangesAsync();
+            }catch(Exception ex)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

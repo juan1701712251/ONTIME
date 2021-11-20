@@ -268,9 +268,8 @@ namespace SCAPE.Application.Services
         /// <param name="workPlaceId">Employee's WorkPlace Id</param>
         /// <param name="StartJobDate">Employee's Start Job Date</param>
         /// <param name="EndJobDate">Employee's End Job Date</param>
-        /// <param name="Schedule">Employee's Schedule</param>
         /// <returns>If add is correct returns true</returns>
-        public async Task<bool> addWorkPlaceByEmployee(string documentId, int workPlaceId, DateTime StartJobDate, DateTime EndJobDate, string Schedule)
+        public async Task<bool> addWorkPlaceByEmployee(string documentId, int workPlaceId, DateTime StartJobDate, DateTime EndJobDate)
         {
             Employee employee = await findEmployee(documentId);
 
@@ -284,7 +283,6 @@ namespace SCAPE.Application.Services
             newEmployeeWorkPlace.IdWorkPlace = workPlaceId;
             newEmployeeWorkPlace.StartJobDate = StartJobDate;
             newEmployeeWorkPlace.EndJobDate = EndJobDate;
-            newEmployeeWorkPlace.Schedule = Schedule;
 
             bool result = await _employee_WorkPlaceRepository.addWorkPlaceByEmployee(newEmployeeWorkPlace);
 
@@ -294,6 +292,46 @@ namespace SCAPE.Application.Services
             }
 
             return result;
+        }
+
+        public async Task<bool> addScheduleByEmployee(DataScheduleModelDTO dataScheduleModel)
+        {
+            //Check if the employee is part of the workplace
+            Employee employee = await this.findEmployee(dataScheduleModel.DocumentId);
+
+            if (employee == null)
+            {
+                throw new EmployeeException("Doesnt exit employee with that document");
+            }
+
+            EmployeeWorkPlace employeeWorkPlace = await _employee_WorkPlaceRepository.findEmployeeWorkPlace(dataScheduleModel.WorkPlaceId,employee.Id);
+
+
+            //Add or Update Association between Employee and WorkPlace
+            if(employeeWorkPlace == null)
+            {
+                try
+                {
+                    await this.addWorkPlaceByEmployee(employee.DocumentId, dataScheduleModel.WorkPlaceId, dataScheduleModel.StartJobDate, dataScheduleModel.EndJobDate);
+                }catch(Exception ex)
+                {
+                    throw new EmployeeWorkPlaceException("Doesnt exit workplace with that document");
+                }
+            }
+            else
+            {
+                employeeWorkPlace.StartJobDate = dataScheduleModel.StartJobDate;
+                employeeWorkPlace.EndJobDate = dataScheduleModel.EndJobDate;
+
+                if (!await _employee_WorkPlaceRepository.update(employeeWorkPlace))
+                {
+                    throw new EmployeeWorkPlaceException("There was an error updating the employee to workplace");
+                }
+            }
+
+
+            return true;
+
         }
     }
 }
