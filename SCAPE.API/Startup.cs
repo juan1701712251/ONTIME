@@ -92,6 +92,8 @@ namespace SCAPE.API
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddTransient<IUserService, UserService>();
 
+            services.AddTransient<IScheduleRepository, ScheduleRepository>();
+
             services.AddTransient<IAttendanceRepository, AttendanceRepository>();
             services.AddTransient<IAttendanceService, AttendanceService>();
 

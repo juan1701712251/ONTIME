@@ -17,12 +17,14 @@ namespace SCAPE.Application.Services
         private readonly IEmployeeRepository _employeeRepository;
         private readonly IFaceRecognition _faceRecognition;
         private readonly IEmployee_WorkPlaceRepository _employee_WorkPlaceRepository;
+        private readonly IScheduleRepository _scheduleRepository;
 
-        public EmployeeService(IEmployeeRepository employeeRepository, IFaceRecognition faceRecognition,IEmployee_WorkPlaceRepository employee_WorkPlaceRepository)
+        public EmployeeService(IEmployeeRepository employeeRepository, IFaceRecognition faceRecognition,IEmployee_WorkPlaceRepository employee_WorkPlaceRepository,IScheduleRepository scheduleRepository)
         {
             _employeeRepository = employeeRepository;
             _faceRecognition = faceRecognition;
-            _employee_WorkPlaceRepository = employee_WorkPlaceRepository; 
+            _employee_WorkPlaceRepository = employee_WorkPlaceRepository;
+            _scheduleRepository = scheduleRepository;
         }
         /// <summary>
         /// This method contain bussiness logic 
@@ -329,9 +331,57 @@ namespace SCAPE.Application.Services
                 }
             }
 
+            //TO DO: Check if the Schedule has crossings
+
+            /*
+             * 
+             * IMPLEMENTAR
+             * 
+             */
+
+            //Delete all schedule of this employee for this workplace
+            if (!await _scheduleRepository.deleteRange(dataScheduleModel.WorkPlaceId, employee.Id))
+            {
+                throw new ScheduleException("There was an error checking schedules");
+            }
+
+            //Add all new schedules
+            List<EmployeeSchedule> schedules = new List<EmployeeSchedule>();
+
+            foreach(ScheduleModelDTO scheduleDTO in dataScheduleModel.Schedule)
+            {
+                schedules.Add(new EmployeeSchedule
+                {
+                    IdEmployee = employee.Id,
+                    IdWorkPlace = dataScheduleModel.WorkPlaceId,
+                    DayOfWeek = scheduleDTO.dayOfWeek,
+                    StartMinute = scheduleDTO.startMinute,
+                    EndMinute = scheduleDTO.endMinute
+                });
+            }
+
+            if (!await _scheduleRepository.addRange(schedules))
+            {
+                throw new ScheduleException("There was an error inserting new schedules");
+            }
 
             return true;
 
+        }
+
+        public async Task<List<EmployeeSchedule>> getScheduleByEmployee(string documentId, int workPlaceId)
+        {
+            //Check if the employee is part of the workplace
+            Employee employee = await this.findEmployee(documentId);
+
+            if (employee == null)
+            {
+                throw new EmployeeException("Doesnt exit employee with that document");
+            }
+
+            List<EmployeeSchedule> schedules = await _scheduleRepository.findSchedule(workPlaceId, employee.Id);
+
+            return schedules;
         }
     }
 }

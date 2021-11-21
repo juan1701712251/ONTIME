@@ -280,5 +280,24 @@ namespace SCAPE.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin,Employer")]
+        [Route("schedule")]
+        public async Task<IActionResult> getScheduleByEmployee(string documentId,int workPlaceId)
+        {
+            List<ScheduleModelDTO> resultDTO;
+            try
+            {
+                List<EmployeeSchedule> schedules = await _employeeService.getScheduleByEmployee(documentId,workPlaceId);
+                resultDTO = _mapper.Map<List<ScheduleModelDTO>>(schedules);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(resultDTO);
+        }
     }
 }
