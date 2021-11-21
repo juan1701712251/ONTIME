@@ -317,7 +317,7 @@ namespace SCAPE.Application.Services
                     await this.addWorkPlaceByEmployee(employee.DocumentId, dataScheduleModel.WorkPlaceId, dataScheduleModel.StartJobDate, dataScheduleModel.EndJobDate);
                 }catch(Exception ex)
                 {
-                    throw new EmployeeWorkPlaceException("Doesnt exit workplace with that document");
+                    throw new EmployeeWorkPlaceException("Doesnt exit workplace with that id");
                 }
             }
             else
@@ -331,18 +331,35 @@ namespace SCAPE.Application.Services
                 }
             }
 
-            //TO DO: Check if the Schedule has crossings
+            //Check if the Schedule has crossings
 
-            /*
-             * 
-             * IMPLEMENTAR
-             * 
-             */
+            for(int i = 0; i < dataScheduleModel.Schedule.Count; i++)
+            {
+                ScheduleModelDTO schedule1 = dataScheduleModel.Schedule[i];
+                if (schedule1.startMinute > schedule1.endMinute || schedule1.dayOfWeek < 1 || schedule1.dayOfWeek > 7)
+                {
+                    throw new ScheduleException("Please insert valid times for minutes");
+                }
+                for (int j = 0; j < dataScheduleModel.Schedule.Count; j++)
+                {
+                    ScheduleModelDTO schedule2 = dataScheduleModel.Schedule[j];
+                    if(i != j && schedule1.dayOfWeek == schedule2.dayOfWeek)
+                    {
+                        if ((schedule1.endMinute > schedule2.startMinute && schedule1.endMinute < schedule2.endMinute) ||
+                            (schedule1.startMinute < schedule2.endMinute && schedule1.endMinute > schedule2.endMinute) ||
+                            (schedule1.endMinute <= schedule2.endMinute && schedule1.startMinute >= schedule2.startMinute)||
+                            (schedule2.endMinute <= schedule1.endMinute && schedule2.startMinute >= schedule1.startMinute))
+                        {
+                            throw new ScheduleException("Schedule has crossings");
+                        }
+                    }
+                }
+            }
 
             //Delete all schedule of this employee for this workplace
             if (!await _scheduleRepository.deleteRange(dataScheduleModel.WorkPlaceId, employee.Id))
             {
-                throw new ScheduleException("There was an error checking schedules");
+                throw new ScheduleException("There was an error adding/updating schedules");
             }
 
             //Add all new schedules
@@ -382,6 +399,26 @@ namespace SCAPE.Application.Services
             List<EmployeeSchedule> schedules = await _scheduleRepository.findSchedule(workPlaceId, employee.Id);
 
             return schedules;
+        }
+
+        public async Task<bool> deleteEmployeeByWorkPlace(string documentId, int workPlaceId)
+        {
+            //Check if the employee is part of the workplace
+            Employee employee = await this.findEmployee(documentId);
+
+            if (employee == null)
+            {
+                throw new EmployeeException("Doesnt exit employee with that document");
+            }
+
+            bool result = await _employee_WorkPlaceRepository.remove(workPlaceId, employee.Id);
+
+            if(!result)
+            {
+                throw new EmployeeWorkPlaceException("There was an error deleting the employee of this workplace");
+            }
+
+            return result;
         }
     }
 }

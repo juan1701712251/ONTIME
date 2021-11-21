@@ -263,6 +263,19 @@ namespace SCAPE.API.Controllers
             return Ok(employeeDTO);
         }
 
+        /// <summary>
+        /// Add Info Schedule to Employee By WorkPlace
+        /// </summary>
+        /// <param name="dataScheduleModel">Data of Schedule</param>
+        /// <returns>If call is successful return true</returns>
+        /// <response code = "400">EmployeeException --> Doesnt exit employee with that document<br></br>
+        ///                        EmployeeWorkPlaceException --> Doesnt exit workplace with that id<br></br> 
+        ///                        EmployeeWorkPlaceException --> There was an error adding/updating the employee to workplace<br></br> 
+        ///                        ScheduleException --> Please insert valid times for minutes<br></br> 
+        ///                        ScheduleException --> Schedule has crossings<br></br> 
+        ///                        ScheduleException --> There was an error checking schedules<br></br> 
+        ///                        ScheduleException --> There was an error inserting new schedules
+        /// </response>
         [HttpPost]
         [Authorize(Roles = "Admin,Employer")]
         [Route("schedule")]
@@ -281,6 +294,13 @@ namespace SCAPE.API.Controllers
             return Ok(result);
         }
 
+        /// <summary>
+        /// Get a schedule from employee
+        /// </summary>
+        /// <param name="documentId">Employee's document</param>
+        /// <param name="workPlaceId">Workplace identifier</param>
+        /// <returns>If call is successful return List of Schedules </returns>
+        /// <response code = "400">EmployeeException --> Doesnt exit employee with that document<br></br></response>
         [HttpGet]
         [Authorize(Roles = "Admin,Employer")]
         [Route("schedule")]
@@ -298,6 +318,30 @@ namespace SCAPE.API.Controllers
             }
 
             return Ok(resultDTO);
+        }
+
+        /// <summary>
+        /// Delete Employee by WorkPlace
+        /// </summary>
+        /// <param name="documentId">Employee's document</param>
+        /// <param name="workPlaceId">WorkPlace Identifier</param>
+        /// <returns>If call is successful return true </returns>
+        [HttpDelete]
+        [Authorize(Roles = "Admin,Employer")]
+        [Route("workplace")]
+        public async Task<IActionResult> deleteEmployeeByWorkPlace(string documentId, int workPlaceId)
+        {
+            bool result;
+            try
+            {
+                result = await _employeeService.deleteEmployeeByWorkPlace(documentId, workPlaceId);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+
+            return Ok(result);
         }
     }
 }

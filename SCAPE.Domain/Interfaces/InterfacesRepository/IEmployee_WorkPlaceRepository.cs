@@ -12,5 +12,6 @@ namespace SCAPE.Domain.Interfaces
         Task<bool> addWorkPlaceByEmployee(EmployeeWorkPlace newEmployeeWorkPlace);
         Task<EmployeeWorkPlace> findEmployeeWorkPlace(int workPlaceId, int idEmployee);
         Task<bool> update(EmployeeWorkPlace employeeWorkPlace);
+        Task<bool> remove(int workPlaceId, int employeeId);
     }
 }

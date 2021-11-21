@@ -109,6 +109,24 @@ namespace SCAPE.Infraestructure.Repositories
 
         }
 
+        public async Task<bool> remove(int workPlaceId, int employeeId)
+        {
+            try
+            {
+                EmployeeWorkPlace deleteEmployeeWorkPlace = await this.findEmployeeWorkPlace(workPlaceId, employeeId);
+
+                if (deleteEmployeeWorkPlace == null) return false;
+
+                _context.EmployeeWorkPlace.Remove(deleteEmployeeWorkPlace);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            return true;
+        }
+
         public async Task<bool> update(EmployeeWorkPlace employeeWorkPlace)
         {
             try
