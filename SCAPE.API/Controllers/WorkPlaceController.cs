@@ -184,5 +184,24 @@ namespace SCAPE.API.Controllers
 
             return Ok(workPlaceWithEmployeesDTO);
         }
+
+        [HttpGet]
+        [Authorize]
+        [Route("nearLocation")]
+        public async Task<IActionResult> getWorkPlaceNearLocation(NearLocationModel data)
+        {
+            List<WorkPlace> workplaces = null;
+            try
+            {
+                workplaces = await _workPlaceService.getWorkPlaceNearLocation(data.Latitude,data.Longitude,data.Precision);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            List<WorkPlaceDATAOUTDTO> workPlacesDTO = _mapper.Map<List<WorkPlaceDATAOUTDTO>>(workplaces);
+
+            return Ok(workPlacesDTO);
+        }
     }
 }

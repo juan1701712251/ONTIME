@@ -13,5 +13,6 @@ namespace SCAPE.Application.Interfaces
         Task<WorkPlace> getEmployeesWithImageByWorkplace(int workPlaceId);
         Task<bool> editWorkPlace(WorkPlace editWorkPlace, int workPlaceId,string emailEmployer);
         Task<bool> deleteWorkPlace(int workplaceId, string emailEmployer);
+        Task<List<WorkPlace>> getWorkPlaceNearLocation(string latitude, string longitude, double precision);
     }
 }

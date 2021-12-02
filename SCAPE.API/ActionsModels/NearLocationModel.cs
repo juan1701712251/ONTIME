@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace SCAPE.API.ActionsModels
 {
-    public class AttendanceModel
+    public class NearLocationModel
     {
         [Required]
-        public string documentEmployee { get; set; }
+        public string Latitude { get; set; }
         [Required]
-        public int workPlaceId { get; set; }
+        public string Longitude { get; set; }
         [Required]
-        public string type { get; set; }
-        [Required]
-        public DateTime dateTime { get; set; }
+        public double Precision { get; set; } 
     }
 }

@@ -110,3 +110,4 @@ E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netst
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csproj.CopyComplete
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.dll
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.pdb
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\EFCoreSqlServerNetTopologySuite.cs

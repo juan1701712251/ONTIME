@@ -13,5 +13,6 @@ namespace SCAPE.Domain.Interfaces
         Task<bool> editWorkPlace(WorkPlace editWorkPlace,WorkPlace ctWorkPlace);
         Task<WorkPlace> get(int workPlaceId);
         Task<bool> deleteWorkPlace(WorkPlace ctWorkPlace);
+        Task<List<WorkPlace>> getAllWorkPlaces();
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "W20JB4//LRnlbKr6KYH048zPGnWDgEazfiZ9FEtM2wA+tKlin2qJamsYvay1bp86m5j0na4oaJGXCMm7zoyHxA==",
+  "dgSpecHash": "HQCAXIrQs9Lkvzv0+/8N2Bt3Ji7d7OPr0eZy1Bb2KJ0faCtVyj+EtWdDVR+yVKdia1wS68I54A/jtxQODuDowQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\GOMEZ\\Desktop\\Semestre_9\\Proyecto Integrador\\ONTIME\\SCAPE.UnitTests\\SCAPE.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -21,6 +21,7 @@
     "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\3.1.0\\microsoft.entityframeworkcore.analyzers.3.1.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\3.1.0\\microsoft.entityframeworkcore.relational.3.1.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver\\3.1.0\\microsoft.entityframeworkcore.sqlserver.3.1.0.nupkg.sha512",
+    "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.entityframeworkcore.sqlserver.nettopologysuite\\3.1.0\\microsoft.entityframeworkcore.sqlserver.nettopologysuite.3.1.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\3.1.0\\microsoft.extensions.caching.abstractions.3.1.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.extensions.caching.memory\\3.1.0\\microsoft.extensions.caching.memory.3.1.0.nupkg.sha512",
@@ -57,6 +58,8 @@
     "C:\\Users\\GOMEZ\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\moq\\4.16.1\\moq.4.16.1.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
+    "C:\\Users\\GOMEZ\\.nuget\\packages\\nettopologysuite\\2.0.0\\nettopologysuite.2.0.0.nupkg.sha512",
+    "C:\\Users\\GOMEZ\\.nuget\\packages\\nettopologysuite.io.sqlserverbytes\\2.0.0\\nettopologysuite.io.sqlserverbytes.2.0.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\newtonsoft.json\\10.0.3\\newtonsoft.json.10.0.3.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\nuget.frameworks\\5.0.0\\nuget.frameworks.5.0.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\nunit\\3.13.2\\nunit.3.13.2.nupkg.sha512",
@@ -111,6 +114,7 @@
     "C:\\Users\\GOMEZ\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\system.linq.expressions\\4.3.0\\system.linq.expressions.4.3.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\system.linq.queryable\\4.3.0\\system.linq.queryable.4.3.0.nupkg.sha512",
+    "C:\\Users\\GOMEZ\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\system.net.http\\4.3.4\\system.net.http.4.3.4.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",
     "C:\\Users\\GOMEZ\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",

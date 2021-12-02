@@ -7,6 +7,7 @@ namespace SCAPE.Domain.Entities
     {
         public WorkPlace()
         {
+            Attendance = new HashSet<Attendance>();
             EmployeeSchedule = new HashSet<EmployeeSchedule>();
             EmployeeWorkPlace = new HashSet<EmployeeWorkPlace>();
         }
@@ -21,6 +22,7 @@ namespace SCAPE.Domain.Entities
         public int IdEmployer { get; set; }
 
         public virtual Employer IdEmployerNavigation { get; set; }
+        public virtual ICollection<Attendance> Attendance { get; set; }
         public virtual ICollection<EmployeeSchedule> EmployeeSchedule { get; set; }
         public virtual ICollection<EmployeeWorkPlace> EmployeeWorkPlace { get; set; }
     }

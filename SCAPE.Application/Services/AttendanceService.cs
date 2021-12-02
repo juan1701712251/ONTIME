@@ -5,6 +5,7 @@ using SCAPE.Domain.Entities;
 using SCAPE.Domain.Exceptions;
 using SCAPE.Domain.Interfaces;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SCAPE.Application.Services
@@ -34,7 +35,7 @@ namespace SCAPE.Application.Services
         /// return a error message, if the attendance is not add,
         /// if the insert is success, return true
         /// </returns>
-        public async Task<bool> addAttendance(DateTime date, string type, string documentEmployee)
+        public async Task<bool> addAttendance(DateTime date, string type, string documentEmployee,int workPlaceId)
         {
             Employee employee = await _employeeRepository.findEmployee(documentEmployee);
 
@@ -44,6 +45,7 @@ namespace SCAPE.Application.Services
                 newAttendance.Date = date;
                 newAttendance.Type = type;
                 newAttendance.IdEmployee = employee.Id;
+                newAttendance.IdWorkPlace = workPlaceId;
 
                 if(type.Length != 1)
                 {
@@ -63,6 +65,26 @@ namespace SCAPE.Application.Services
             }
 
             return true;
+        }
+
+        public async Task<List<Attendance>> getAttendancesByEmployee(string documentEmployee)
+        {
+            Employee employee = await _employeeRepository.findEmployee(documentEmployee);
+
+            List<Attendance> attendances;
+
+            if (employee != null)
+            {
+                attendances = await _attendanceRepository.getAttendancesByEmployee(employee.Id);
+
+                if (attendances == null) throw new AttendanceException("There was an error looking attendaces");
+            }
+            else
+            {
+                throw new EmployeeException("There is not employee linked to that document");
+            }
+
+            return attendances;
         }
     }
 }

@@ -106,7 +106,7 @@ CREATE TABLE [dbo].[Attendance](
 	[date] [datetime] NOT NULL,
 	[type] [char] NOT NULL,
 	[idEmployee] [int] NOT NULL,
-
+	[idWorkPlace] [int]  NOT NULL,
  CONSTRAINT [PK_Attendance] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -169,6 +169,13 @@ ALTER TABLE [dbo].[Attendance]  WITH NOCHECK ADD  CONSTRAINT [FK_Employee] FOREI
 REFERENCES [dbo].[Employee] ([id]) ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Attendance] CHECK CONSTRAINT [FK_Employee]
+
+GO
+ALTER TABLE [dbo].[Attendance]  WITH NOCHECK ADD  CONSTRAINT [FK_WorkPlaceAttendance] FOREIGN KEY([idWorkPlace])
+REFERENCES [dbo].[WorkPlace] ([id]) ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Attendance] CHECK CONSTRAINT [FK_WorkPlaceAttendance]
+
 
 ALTER TABLE [dbo].[Image]  WITH NOCHECK ADD  CONSTRAINT [FK_EmployeeImage] FOREIGN KEY([idEmployee])
 REFERENCES [dbo].[Employee] ([id]) ON DELETE CASCADE

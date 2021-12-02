@@ -3,6 +3,8 @@ using SCAPE.Domain.Entities;
 using SCAPE.Domain.Interfaces;
 using SCAPE.Infraestructure.Context;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SCAPE.Infraestructure.Repositories
@@ -14,6 +16,11 @@ namespace SCAPE.Infraestructure.Repositories
         public AttendanceRepository(SCAPEDBContext context)
         {
             _context = context;
+        }
+
+        public async Task<List<Attendance>> getAttendancesByEmployee(int EmployeeId)
+        {
+            return await _context.Attendance.Where(a => a.IdEmployee == EmployeeId).ToListAsync();
         }
 
 

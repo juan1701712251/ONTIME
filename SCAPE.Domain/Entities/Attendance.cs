@@ -9,7 +9,9 @@ namespace SCAPE.Domain.Entities
         public DateTime Date { get; set; }
         public string Type { get; set; }
         public int IdEmployee { get; set; }
+        public int IdWorkPlace { get; set; }
 
         public virtual Employee IdEmployeeNavigation { get; set; }
+        public virtual WorkPlace IdWorkPlaceNavigation { get; set; }
     }
 }

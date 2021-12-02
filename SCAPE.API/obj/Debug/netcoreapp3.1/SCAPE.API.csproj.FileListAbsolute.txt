@@ -530,3 +530,6 @@ E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.API\obj\Debug\netcoreapp3.1\SCA
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.API\obj\Debug\netcoreapp3.1\SCAPE.API.genruntimeconfig.cache
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\NetTopologySuite.dll
+C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.API\bin\Debug\netcoreapp3.1\NetTopologySuite.IO.SqlServerBytes.dll

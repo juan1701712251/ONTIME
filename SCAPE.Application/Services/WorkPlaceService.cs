@@ -169,5 +169,62 @@ namespace SCAPE.Application.Services
 
             return isDelete;
         }
+
+        public async Task<List<WorkPlace>> getWorkPlaceNearLocation(string latitude, string longitude, double precision)
+        {
+            //TODO: Limpiar y verificar datos de longitude y latitude
+
+            double latitudeOrigin = Double.Parse(latitude.Replace(".",","));
+            double longitudeOrigin = Double.Parse(longitude.Replace(".", ","));
+
+            List<WorkPlace> workplaces = await _workPlaceRepository.getAllWorkPlaces();
+            List<WorkPlace> outWorkPlaces = new List<WorkPlace>();
+            foreach (WorkPlace w in workplaces)
+            {
+                if (w.LongitudePosition == null || w.LatitudePosition == null)
+                {
+                    continue;
+                }
+                double latitudeWorkPlace = Double.Parse(w.LatitudePosition.Replace(".", ","));
+                double longitudeWorkPlace = Double.Parse(w.LongitudePosition.Replace(".", ","));
+                //TODO: Limpiar y verificar datos de longitude y latitude
+
+                if (DistanceTo(latitudeOrigin, longitudeOrigin, latitudeWorkPlace, longitudeWorkPlace,'m') <= precision)
+                {
+                    outWorkPlaces.Add(w);
+                }
+            }
+
+            return outWorkPlaces;
+
+        }
+
+        public double DistanceTo(double lat1, double lon1, double lat2, double lon2, char unit = 'K')
+        {
+            double rlat1 = Math.PI * lat1 / 180;
+            double rlat2 = Math.PI * lat2 / 180;
+            double theta = lon1 - lon2;
+            double rtheta = Math.PI * theta / 180;
+            double dist =
+                Math.Sin(rlat1) * Math.Sin(rlat2) + Math.Cos(rlat1) *
+                Math.Cos(rlat2) * Math.Cos(rtheta);
+            dist = Math.Acos(dist);
+            dist = dist * 180 / Math.PI;
+            dist = dist * 60 * 1.1515;
+
+            switch (unit)
+            {
+                case 'm': //Meters
+                    return (dist * 1.609344) * 1000;
+                case 'K': //Kilometers -> default
+                    return dist * 1.609344;
+                case 'N': //Nautical Miles 
+                    return dist * 0.8684;
+                case 'M': //Miles
+                    return dist;
+            }
+
+            return dist;
+        }
     }
 }

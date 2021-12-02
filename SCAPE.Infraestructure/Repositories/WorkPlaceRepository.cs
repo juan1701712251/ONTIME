@@ -66,6 +66,13 @@ namespace SCAPE.Infraestructure.Repositories
             List<WorkPlace> workPlaces = await _context.WorkPlace.Where(w => w.IdEmployer == idEmployer).ToListAsync(); 
             return workPlaces;
         }
+
+        public async Task<List<WorkPlace>> getAllWorkPlaces()
+        {
+            List<WorkPlace> workPlaces = await _context.WorkPlace.ToListAsync();
+            return workPlaces;
+        }
+
         /// <summary>
         /// Insert a new WorkPlace
         /// </summary>

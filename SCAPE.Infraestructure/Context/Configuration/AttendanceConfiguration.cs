@@ -13,11 +13,12 @@ namespace SCAPE.Infraestructure.Context.Configuration
             entity.Property(e => e.Id).HasColumnName("id");
 
             entity.Property(e => e.Date)
-                .IsRequired()
                 .HasColumnName("date")
                 .HasColumnType("datetime");
 
             entity.Property(e => e.IdEmployee).HasColumnName("idEmployee");
+
+            entity.Property(e => e.IdWorkPlace).HasDefaultValueSql("((68))");
 
             entity.Property(e => e.Type)
                 .IsRequired()
@@ -29,8 +30,12 @@ namespace SCAPE.Infraestructure.Context.Configuration
             entity.HasOne(d => d.IdEmployeeNavigation)
                 .WithMany(p => p.Attendance)
                 .HasForeignKey(d => d.IdEmployee)
-                .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Employee");
+
+            entity.HasOne(d => d.IdWorkPlaceNavigation)
+                .WithMany(p => p.Attendance)
+                .HasForeignKey(d => d.IdWorkPlace)
+                .HasConstraintName("FK_WorkPlaceAttendance");
         }
     }
 }

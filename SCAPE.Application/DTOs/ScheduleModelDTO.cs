@@ -8,11 +8,11 @@ namespace SCAPE.Application.DTOs
 {
     public class ScheduleModelDTO
     {
-        [RegularExpression(@"^\d*[1-9]\d*$", ErrorMessage = "dayOfWeek ID is required")]
+        [Range(1,7)]
         public int dayOfWeek { get; set; }
-        [RegularExpression(@"^\d*[1-9]\d*$", ErrorMessage = "startMinute ID is required")]
+        [Range(0, 1339)]
         public int startMinute { get; set; }
-        [RegularExpression(@"^\d*[1-9]\d*$", ErrorMessage = "endMinute ID is required")]
+        [Range(0,1339)]
         public int endMinute { get; set; }
     }
 }
