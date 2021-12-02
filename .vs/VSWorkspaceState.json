@@ -1,10 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\SCAPE.Infraestructure",
-    "\\SCAPE.Infraestructure\\Context",
-    "\\SCAPE.Infraestructure\\Repositories",
-    "\\Scripts"
+    "\\SCAPE.API"
   ],
+  "SelectedNode": "\\SCAPE.sln",
   "PreviewInSolutionExplorer": false
 }

@@ -79,3 +79,13 @@ E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Domain\obj\Debug\netstandard2.0
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.csproj.CoreCompileInputs.cache
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.dll
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.pdb
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\bin\Debug\netstandard2.0\SCAPE.Domain.deps.json
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\bin\Debug\netstandard2.0\SCAPE.Domain.dll
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\bin\Debug\netstandard2.0\SCAPE.Domain.pdb
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.csproj.AssemblyReference.cache
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.AssemblyInfoInputs.cache
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.AssemblyInfo.cs
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.csproj.CoreCompileInputs.cache
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.dll
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Domain\obj\Debug\netstandard2.0\SCAPE.Domain.pdb

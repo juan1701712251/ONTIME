@@ -185,6 +185,12 @@ namespace SCAPE.API.Controllers
             return Ok(workPlaceWithEmployeesDTO);
         }
 
+        /// <summary>
+        /// Get Workplaces near about location
+        /// </summary>
+        /// <param name="data">Data of currently location</param>
+        /// <returns>List of Workplaces</returns>
+        /// <response code = "400">WorkPlaceException-->Please send a valid values of coordinates</response>
         [HttpGet]
         [Authorize]
         [Route("nearLocation")]

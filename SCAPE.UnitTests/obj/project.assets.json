@@ -8832,19 +8832,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\GOMEZ\\.nuget\\packages\\": {}
+    "C:\\Users\\juang\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\GOMEZ\\Desktop\\Semestre_9\\Proyecto Integrador\\ONTIME\\SCAPE.UnitTests\\SCAPE.UnitTests.csproj",
+      "projectUniqueName": "C:\\Users\\juang\\Desktop\\UCALDAS\\Proy Integrador\\SCAPE.UnitTests\\SCAPE.UnitTests.csproj",
       "projectName": "SCAPE.UnitTests",
-      "projectPath": "C:\\Users\\GOMEZ\\Desktop\\Semestre_9\\Proyecto Integrador\\ONTIME\\SCAPE.UnitTests\\SCAPE.UnitTests.csproj",
-      "packagesPath": "C:\\Users\\GOMEZ\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\GOMEZ\\Desktop\\Semestre_9\\Proyecto Integrador\\ONTIME\\SCAPE.UnitTests\\obj\\",
+      "projectPath": "C:\\Users\\juang\\Desktop\\UCALDAS\\Proy Integrador\\SCAPE.UnitTests\\SCAPE.UnitTests.csproj",
+      "packagesPath": "C:\\Users\\juang\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\juang\\Desktop\\UCALDAS\\Proy Integrador\\SCAPE.UnitTests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\GOMEZ\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\juang\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8858,8 +8858,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\GOMEZ\\Desktop\\Semestre_9\\Proyecto Integrador\\ONTIME\\SCAPE.API\\SCAPE.API.csproj": {
-              "projectPath": "C:\\Users\\GOMEZ\\Desktop\\Semestre_9\\Proyecto Integrador\\ONTIME\\SCAPE.API\\SCAPE.API.csproj"
+            "C:\\Users\\juang\\Desktop\\UCALDAS\\Proy Integrador\\SCAPE.API\\SCAPE.API.csproj": {
+              "projectPath": "C:\\Users\\juang\\Desktop\\UCALDAS\\Proy Integrador\\SCAPE.API\\SCAPE.API.csproj"
             }
           }
         }
@@ -8914,14 +8914,11 @@
         "assetTargetFallback": true,
         "warn": true,
         "frameworkReferences": {
-          "Microsoft.AspNetCore.App": {
-            "privateAssets": "none"
-          },
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.102\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

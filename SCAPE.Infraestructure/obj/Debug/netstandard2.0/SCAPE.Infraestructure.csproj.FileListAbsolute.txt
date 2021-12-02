@@ -111,3 +111,19 @@ E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netst
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.dll
 E:\Materias U\9 semestre\Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.pdb
 C:\Users\GOMEZ\Desktop\Semestre_9\Proyecto Integrador\ONTIME\SCAPE.Infraestructure\obj\Debug\netstandard2.0\EFCoreSqlServerNetTopologySuite.cs
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Infraestructure.deps.json
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Infraestructure.dll
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Infraestructure.pdb
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Application.dll
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Domain.dll
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Application.pdb
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\bin\Debug\netstandard2.0\SCAPE.Domain.pdb
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csproj.AssemblyReference.cache
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.AssemblyInfoInputs.cache
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.AssemblyInfo.cs
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csproj.CoreCompileInputs.cache
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\EFCoreSqlServerNetTopologySuite.cs
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.csproj.CopyComplete
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.dll
+C:\Users\juang\Desktop\UCALDAS\Proy Integrador\SCAPE.Infraestructure\obj\Debug\netstandard2.0\SCAPE.Infraestructure.pdb

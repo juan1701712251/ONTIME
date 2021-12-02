@@ -322,8 +322,22 @@ namespace SCAPE.Application.Services
             }
             else
             {
-                employeeWorkPlace.StartJobDate = dataScheduleModel.StartJobDate;
-                employeeWorkPlace.EndJobDate = dataScheduleModel.EndJobDate;
+                if (dataScheduleModel.StartJobDate.Year == 1) {
+                    employeeWorkPlace.StartJobDate = null;
+                }
+                else
+                {
+                    employeeWorkPlace.StartJobDate = dataScheduleModel.StartJobDate;
+                }
+
+                if (dataScheduleModel.EndJobDate.Year == 1)
+                {
+                    employeeWorkPlace.EndJobDate = null;
+                }
+                else
+                {
+                    employeeWorkPlace.EndJobDate = dataScheduleModel.EndJobDate;
+                }
 
                 if (!await _employee_WorkPlaceRepository.update(employeeWorkPlace))
                 {

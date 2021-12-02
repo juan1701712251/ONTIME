@@ -172,10 +172,16 @@ namespace SCAPE.Application.Services
 
         public async Task<List<WorkPlace>> getWorkPlaceNearLocation(string latitude, string longitude, double precision)
         {
-            //TODO: Limpiar y verificar datos de longitude y latitude
-
-            double latitudeOrigin = Double.Parse(latitude.Replace(".",","));
-            double longitudeOrigin = Double.Parse(longitude.Replace(".", ","));
+            double latitudeOrigin;
+            double longitudeOrigin;
+            try
+            {
+                latitudeOrigin = Double.Parse(latitude.Replace(".", ","));
+                longitudeOrigin = Double.Parse(longitude.Replace(".", ","));
+            }catch(Exception ex)
+            {
+                throw new WorkPlaceException("Please send a valid values of coordinates");
+            }
 
             List<WorkPlace> workplaces = await _workPlaceRepository.getAllWorkPlaces();
             List<WorkPlace> outWorkPlaces = new List<WorkPlace>();
@@ -185,9 +191,18 @@ namespace SCAPE.Application.Services
                 {
                     continue;
                 }
-                double latitudeWorkPlace = Double.Parse(w.LatitudePosition.Replace(".", ","));
-                double longitudeWorkPlace = Double.Parse(w.LongitudePosition.Replace(".", ","));
-                //TODO: Limpiar y verificar datos de longitude y latitude
+                double latitudeWorkPlace;
+                double longitudeWorkPlace;
+                try
+                {
+                    latitudeWorkPlace = Double.Parse(w.LatitudePosition.Replace(".", ","));
+                    longitudeWorkPlace = Double.Parse(w.LongitudePosition.Replace(".", ","));
+                }
+                catch (Exception ex)
+                {
+                    throw new WorkPlaceException("CODE ERROR: COORDINATES DATA IS CORRUPTED (CALL SUPPORT)");
+                }
+                
 
                 if (DistanceTo(latitudeOrigin, longitudeOrigin, latitudeWorkPlace, longitudeWorkPlace,'m') <= precision)
                 {
@@ -199,7 +214,7 @@ namespace SCAPE.Application.Services
 
         }
 
-        public double DistanceTo(double lat1, double lon1, double lat2, double lon2, char unit = 'K')
+        private double DistanceTo(double lat1, double lon1, double lat2, double lon2, char unit = 'K')
         {
             double rlat1 = Math.PI * lat1 / 180;
             double rlat2 = Math.PI * lat2 / 180;
