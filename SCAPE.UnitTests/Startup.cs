@@ -34,7 +34,8 @@ namespace SCAPE.UnitTests
             services.AddTransient<IWorkPlaceService, WorkPlaceService>();
             services.AddTransient<IWorkPlaceRepository, WorkPlaceRepository>();
             services.AddTransient<IEmployerRepository, EmployerRepository>();
-          
+
+            services.AddTransient<IScheduleRepository, ScheduleRepository>();
 
             services.AddTransient<IFaceRecognition, FaceRecognition>();
 
